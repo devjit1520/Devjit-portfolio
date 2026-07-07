@@ -142,53 +142,42 @@ function JourneyCard({ item, index }) {
     >
       {/* Timeline Dot */}
 
-      <div
-        className="
-        absolute
-        left-0
-        top-8
-        z-20
-        w-5
-        h-5
-        rounded-full
-        bg-blue-500
-        shadow-[0_0_20px_rgba(59,130,246,0.8)]
-        "
-      />
-
-      {/* Year */}
-
-      <div
-        className="
-        absolute
-        left-10
-        top-4
-        text-blue-400
-        text-3xl
-        font-bold
-        "
-      >
-        {item.year}
+     <div className="absolute left-2 md:left-0 top-25 z-20">
+        <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.8)]" />
       </div>
+
+      {/* <div className="ml-14 md:ml-32 absolute left-8 md:left-10 top-4">
+        <h3 className="text-xl md:text-3xl font-bold text-blue-400">
+          {item.year}
+        </h3>
+      </div> */}
+
+      {/* <div className="absolute left-8 md:left-10 top-4">
+        <h3 className="text-xl md:text-3xl font-bold text-blue-400">
+          {item.year}
+        </h3>
+      </div> */}
 
       {/* Card */}
 
       <div
         className="
-        ml-32
-        relative
-        overflow-hidden
-        rounded-3xl
-        border
-        border-white/10
-        bg-white/5
-        backdrop-blur-xl
-        p-8
-        hover:border-blue-500/40
-        hover:shadow-[0_0_40px_rgba(59,130,246,0.2)]
-        transition-all
-        duration-500
-        "
+          ml-14
+          md:ml-32
+          relative
+          overflow-hidden
+          rounded-3xl
+          border
+          border-white/10
+          bg-white/5
+          backdrop-blur-xl
+          p-5
+          md:p-8
+          transition-all
+          duration-500
+          hover:border-blue-500/40
+          hover:shadow-[0_0_40px_rgba(59,130,246,0.2)]
+          "
       >
         {/* Mouse Spotlight */}
 
@@ -211,7 +200,7 @@ function JourneyCard({ item, index }) {
           absolute
           right-8
           top-4
-          text-[120px]
+          text-[70px] md:text-[120px]
           font-bold
           text-white/5
           "
@@ -222,7 +211,7 @@ function JourneyCard({ item, index }) {
         <div className="relative z-10">
           {/* Header */}
 
-          <div className="flex items-center gap-5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div
               className="
               w-16
@@ -235,16 +224,16 @@ function JourneyCard({ item, index }) {
               "
             >
               <Icon
-                className={`text-3xl ${item.iconColor}`}
+                className={`w-10 h-10 md:w-9 md:h-9 ${item.iconColor}`}
               />
             </div>
 
             <div>
-              <h3 className="text-3xl font-bold">
+              <h3 className="text-2xl md:text-3xl font-bold leading-tight break-words">
                 {item.title}
               </h3>
 
-              <p className="text-slate-400 mt-1">
+              <p className="text-sm md:text-lg text-slate-400 mt-1">
                 {item.company}
               </p>
             </div>
@@ -252,25 +241,18 @@ function JourneyCard({ item, index }) {
 
           {/* Description */}
 
-          <p
-            className="
-            text-slate-300
-            leading-8
-            mt-8
-            "
-          >
+          <p className="text-slate-300 text-base md:text-lg leading-7 md:leading-8 mt-6">
             {item.description}
           </p>
 
           {/* Technologies */}
 
-          <div className="flex flex-wrap gap-3 mt-8">
+          <div className="flex flex-wrap gap-2 md:gap-3 mt-6">
             {item.technologies.map((tech) => (
               <span
                 key={tech}
                 className="
-                px-4
-                py-2
+                px-3 py-2 text-sm md:text-base
                 rounded-full
                 bg-slate-800/80
                 border
@@ -368,7 +350,7 @@ export default function Experience() {
         {/* Section Title */}
 
         <div className="text-center mb-24">
-          <h2 className="text-5xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold">
             My Developer Journey
           </h2>
 
@@ -409,7 +391,7 @@ export default function Experience() {
           <div
             className="
             absolute
-            left-2
+            left-3 md:left-2
             top-0
             bottom-0
             w-1

@@ -8,6 +8,9 @@ import {
   FaArrowRight,
   FaDownload,
   FaReact,
+  FaWordpress,
+  
+
 } from "react-icons/fa";
 
 import {
@@ -15,13 +18,25 @@ import {
   HiLightningBolt,
 } from "react-icons/hi";
 
+import {
+  SiJavascript,
+  SiTailwindcss,
+} from "react-icons/si";
+
+// import {
+//   HiCheckCircle,
+//   HiLightningBolt,
+// } from "react-icons/hi";
+
 import profile from "../../assets/devjit.png";
+
 
 function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-[#020B2D] overflow-hidden pt-28"
+      className="pt-28 lg:pt-28"
+      // className="relative min-h-screen bg-[#020B2D] overflow-hidden pt-28"
     >
       {/* BACKGROUND GLOW */}
 
@@ -60,11 +75,16 @@ function Hero() {
               Hey ,  I'm
             </h3>
 
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
+            {/* <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
               Devjit Mondal
 
               
-            </h1>
+            </h1> */}
+
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold ">
+                  Devjit Mondal
+                </h1>
+
             {/* <h2>
               <span className="block bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 Frontend Develope
@@ -73,7 +93,7 @@ function Hero() {
 
             {/* TYPING EFFECT */}
 
-            <div className="text-2xl text-slate-300 font-semibold mb-8">
+            <div className="text-2xl md:text-3xl font-semibold mb-8">
               <TypeAnimation
                 sequence={[
                   "Frontend Developer",
@@ -163,70 +183,72 @@ function Hero() {
 
             {/* STATS */}
 
-            <div className="flex flex-wrap gap-3 mt-8 mb-8">
+           <div className="mt-12
+            flex flex-wrap
+            lg:flex-nowrap
+            justify-center
+            gap-4 mb-5">
+              {[
+                {
+                  icon: <FaReact />,
+                  name: "React",
+                  color: "text-cyan-400",
+                  bg: "bg-cyan-500/10",
+                  border: "border-cyan-500/30",
+                },
+                {
+                  icon: <SiTailwindcss />,
+                  name: "Tailwind",
+                  color: "text-sky-400",
+                  bg: "bg-sky-500/10",
+                  border: "border-sky-500/30",
+                },
+                {
+                  icon: <SiJavascript />,
+                  name: "JavaScript",
+                  color: "text-yellow-400",
+                  bg: "bg-yellow-500/10",
+                  border: "border-yellow-500/30",
+                },
+                {
+                  icon: <FaWordpress />,
+                  name: "WordPress",
+                  color: "text-orange-400",
+                  bg: "bg-orange-500/10",
+                  border: "border-orange-500/30",
+                },
+              ].map((item) => (
+                <div
+                  key={item.name}
+                  className={`
+                    inline-flex
+                    items-center
+                    gap-3
+                    px-5
+                    py-3
+                    rounded-full
+                    ${item.bg}
+                    ${item.border}
+                    border
+                    backdrop-blur-xl
+                    hover:scale-110
+                    hover:-translate-y-1
+                    transition-all
+                    duration-300
+                    cursor-default
+                  `}
+                >
+                  <span className={`text-1xl ${item.color}`}>
+                    {item.icon}
+                  </span>
 
-              <span
-                className="
-                px-4 py-2
-                rounded-full
-                bg-blue-500/10
-                border border-blue-500/20
-                text-blue-400
-                text-sm
-                hover:scale-105
-                transition
-                "
-              >
-                ⚛ React.js
-              </span>
-
-              <span
-                className="
-                px-4 py-2
-                rounded-full
-                bg-cyan-500/10
-                border border-cyan-500/20
-                text-cyan-400
-                text-sm
-                hover:scale-105
-                transition
-                "
-              >
-                🎨 Tailwind CSS
-              </span>
-
-              <span
-                className="
-                px-4 py-2
-                rounded-full
-                bg-yellow-500/10
-                border border-yellow-500/20
-                text-yellow-400
-                text-sm
-                hover:scale-105
-                transition
-                "
-              >
-                🟨 JavaScript
-              </span>
-
-              <span
-                className="
-                px-4 py-2
-                rounded-full
-                bg-orange-500/10
-                border border-orange-500/20
-                text-orange-400
-                text-sm
-                hover:scale-105
-                transition
-                "
-              >
-                🔥 WordPress
-              </span>
+                  <span className={`font-semibold ${item.color}`}>
+                    {item.name}
+                  </span>
+                </div>
+              ))}
 
             </div>
-
 
             {/* <div className="mt-14 mb-15 grid grid-cols-3 gap-5">
 
@@ -269,7 +291,7 @@ function Hero() {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
-            className="relative"
+            className="relative mb-15"
           >
             {/* MAIN CARD */}
 
@@ -290,13 +312,16 @@ function Hero() {
               <div className="flex justify-center mt-20">
                 <div className="relative">
 
-                  <div className="absolute inset-0 bg-blue-600 blur-[80px] opacity-40 rounded-full" />
+                  <div className="absolute inset-0 bg-blue-400 blur-[90px] opacity-40 rounded-full" />
 
                   <img
                     src={profile}
                     alt="Devjit"
-                    className="relative w-[320px] h-[320px] object-cover rounded-full border-4 border-blue-500 shadow-2xl"
+                    className="relative w-[315px] h-[315px] object-cover rounded-full border-4 border-blue-500 shadow-2xl"
                   />
+
+                
+
 
                 </div>
               </div>
@@ -311,9 +336,9 @@ function Hero() {
                   duration: 3,
                   repeat: Infinity,
                 }}
-                className="absolute bottom-20 left-0 bg-[#0F172A] border border-white/10 px-6 py-4 rounded-2xl flex items-center gap-3 shadow-xl"
+                className="absolute bottom-10 left-0 bg-[#0F172A] border border-white/10 px-4 py-4 rounded-2xl flex items-center gap-2 shadow-x2"
               >
-                <FaReact className="text-cyan-400 text-3xl" />
+                <FaReact className="text-cyan-700 text-3xl" />
 
                 <div>
                   <h3 className="font-bold">
@@ -336,9 +361,9 @@ function Hero() {
                   duration: 3,
                   repeat: Infinity,
                 }}
-                className="absolute top-40 right-0 bg-[#0F172A] border border-white/10 px-6 py-4 rounded-2xl flex items-center gap-3 shadow-xl"
+                className="absolute top-30 right-0 bg-[#0F172A] border border-white/10 px-4 py-4 rounded-2xl flex items-center gap-2 shadow-x2"
               >
-                <HiLightningBolt className="text-yellow-400 text-3xl" />
+                <HiLightningBolt className="text-yellow-300 text-3xl" />
 
                 <div>
                   <h3 className="font-bold">
