@@ -60,7 +60,7 @@ function Projects() {
       responsive: true,
 
       github: "https://github.com/devjit1520",
-      demo: "#",
+      demo: "https://my-portfolio-iota-nine-63.vercel.app",
     },
 
     {
@@ -112,7 +112,7 @@ function Projects() {
       responsive: true,
 
       github: "https://github.com/devjit1520",
-      demo: "#",
+      demo: "https://todo-managerrrr.vercel.app/",
     },
 
     {
@@ -152,7 +152,7 @@ function Projects() {
       responsive: true,
 
       github: "https://github.com/devjit1520",
-      demo: "#",
+      demo: "https://quiz-application-lyart-two.vercel.app/",
     },
   ];
 

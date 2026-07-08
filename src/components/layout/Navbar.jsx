@@ -84,7 +84,10 @@ export default function Navbar() {
   };
 
     return (
-    <nav className="fixed top-0 left-0 w-full bg-slate-950/80 backdrop-blur-md z-50 shadow-lg">
+    <nav className="fixed top-0 left-0 w-full  backdrop-blur-md z-50 shadow-lg bg-slate-950/60
+backdrop-blur-2xl
+border-b
+border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           
@@ -105,21 +108,80 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
          <ul className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.id}>
-                <a
-                  href={`#${link.id}`}
-                  className="text-slate-300 hover:bg-blue-500 rounded-2xl  p-2.5 transition duration-500 "
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
 
-            {/* <ThemeToggle /> */}
+          {navLinks.map((link) => (
 
-            
-          </ul>
+            <li key={link.id} className="relative">
+
+              <button
+                onClick={() => handleNavClick(link.id)}
+                className={`
+
+                 hover:scale-105
+                hover:-translate-y-0.5
+                hover:text-blue-400
+                drop-shadow-[0_0_10px_rgba(59,130,246,.9)]
+
+                  ${
+                    activeSection === link.id
+                      ? "text-blue-400"
+                      : "text-slate-300 hover:text-white"
+                  }
+
+                `}
+              >
+
+                {link.name}
+
+                {/* Hover Underline */}
+
+                <span
+                  className="
+                    absolute
+                    left-0
+                    -bottom-2
+                    h-[2px]
+                    w-0
+                    rounded-full
+                    bg-blue-500
+                    transition-all
+                    duration-300
+                    group-hover:w-full
+                  "
+                />
+
+                {/* Active Underline */}
+
+                {activeSection === link.id && (
+
+                  <motion.span
+                    layoutId="navbarUnderline"
+                    className="
+                      absolute
+                      left-0
+                      -bottom-2
+                      h-[3px]
+                      w-full
+                      rounded-full
+                      bg-blue-500
+                      shadow-[0_0_20px_rgba(59,130,246,.9)]
+                    "
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 30,
+                    }}
+                  />
+
+                )}
+
+              </button>
+
+            </li>
+
+          ))}
+
+        </ul>
           <a
               href="/Devjit_Mondal.pdf"
               download

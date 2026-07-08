@@ -284,26 +284,7 @@ function Footer() {
 
             <div className="space-y-4">
 
-              {/* {[
-                "About",
-                "Skills",
-                "Projects",
-                "Experience",
-                
-              ].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="
-                  block
-                  text-slate-400
-                  hover:text-blue-400
-                  transition
-                  "
-                >
-                  {item}
-                </a>
-              ))} */}
+             
 
             <div
               className="
