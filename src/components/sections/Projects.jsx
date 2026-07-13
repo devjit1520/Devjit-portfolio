@@ -5,6 +5,8 @@ import { AiOutlineJavaScript } from "react-icons/ai";
 import { MdHtml , MdCss , MdOutlineSdStorage , MdQuiz  } from "react-icons/md";
 import { SiVite } from "react-icons/si";
 import { LuListTodo } from "react-icons/lu";
+import { IoIosWallet } from "react-icons/io";
+
 
 import {
   FaReact,
@@ -154,6 +156,65 @@ function Projects() {
       github: "https://github.com/devjit1520",
       demo: "https://quiz-application-lyart-two.vercel.app/",
     },
+     {
+      id: 4,
+      title: "Finance Track Application",
+      category: "",
+      status: "Featured",
+
+      description:
+        "FinTrack Pro is a modern and responsive personal finance management web application designed to help users track income, expenses, budgets, savings goals, and financial performance in one place. The application features an intuitive dashboard with real-time financial insights, interactive charts, premium glassmorphism UI, and smooth animations to deliver an engaging user experience.",
+
+      icon: IoIosWallet  ,
+      iconColor: "text-yellow-500",
+      glow: "rgba(255, 255, 0, 0.18)",
+
+      tech: [
+        {
+          name: "JavaScript",
+          icon: AiOutlineJavaScript,
+        },
+        {
+          name: "React",
+          icon: FaReact,
+        },
+        {
+          name: "Tailwind",
+          icon: SiTailwindcss,
+        },
+        {
+          name: "Vite",
+          icon: SiVite,
+        },
+        {
+          name: "Framer Motion",
+          icon: SiVite,
+        },
+        {
+          name: "React Router DOM",
+          icon: SiVite,
+        },
+        {
+          name: "Recharts",
+          icon: SiVite,
+        },
+        {
+          name: "React Circular Progressbar",
+          icon: SiVite,
+        },
+        {
+          name: "React CountUp",
+          icon: SiVite,
+        },
+      ],
+
+      performance: 99,
+      deployment: "Vercel",
+      responsive: true,
+
+      github: "https://github.com/devjit1520",
+      demo: "#",
+    },
   ];
 
   const filteredProjects =
@@ -197,7 +258,7 @@ function Projects() {
 
         {/* Filters */}
 
-        <div className="flex justify-center flex-wrap gap-4">
+        {/* <div className="flex justify-center flex-wrap gap-4">
 
           {filters.map((item) => (
             <button
@@ -215,13 +276,13 @@ function Projects() {
             </button>
           ))}
 
-        </div>
+        </div> */}
 
         {/* Cards */}
 
         <AnimatePresence mode="wait">
 
-          <div className="grid lg:grid-cols-3 gap-8 mb-10">
+          <div className="grid lg:grid-cols-2 gap-8 mb-10">
 
             {filteredProjects.map(
               (project, index) => (
@@ -296,7 +357,7 @@ function ProjectCard({
       
       ${
         project.featured
-          ? "lg:col-span-2"
+          ? "lg:col-span-1"
           : ""
       }`}
     >

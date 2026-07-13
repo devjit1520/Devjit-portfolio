@@ -93,7 +93,7 @@ function Hero() {
 
             {/* TYPING EFFECT */}
 
-            <div className="text-2xl md:text-3xl font-semibold mb-8">
+            <div className="text-2xl md:text-3xl font-semibold mb-8 pt-4">
               <TypeAnimation
                 sequence={[
                   "Frontend Developer",
@@ -127,7 +127,7 @@ function Hero() {
 
             {/* BUTTONS */}
 
-            <div className="flex flex-wrap gap-5 mb-12">
+            <div className="flex flex-wrap gap-5 mb-10">
 
               <a
                 href="#projects"
@@ -183,7 +183,7 @@ function Hero() {
 
             {/* STATS */}
 
-           <div className="mt-12
+           <div className="mt-8
             flex flex-wrap
             lg:flex-nowrap
             justify-center
