@@ -39,30 +39,48 @@ export default function Navbar() {
   // Active Section Highlight
   // ===============================
 
-  useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
+useEffect(() => {
+  const handleScroll = () => {
+    const scrollPosition =
+      window.scrollY + window.innerHeight * 0.35;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-35% 0px -35% 0px",
-        threshold: 0,
+    let currentSection = "home";
+
+    navLinks.forEach((link) => {
+      const section = document.getElementById(link.id);
+
+      if (
+        section &&
+        section.offsetTop <= scrollPosition
+      ) {
+        currentSection = link.id;
       }
+    });
+
+    const reachedBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 5;
+
+    if (reachedBottom) {
+      currentSection = "contact";
+    }
+
+    setActiveSection(currentSection);
+  };
+
+  handleScroll();
+
+  window.addEventListener("scroll", handleScroll, {
+    passive: true,
+  });
+
+  return () => {
+    window.removeEventListener(
+      "scroll",
+      handleScroll
     );
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
-  }, []);
+  };
+}, []);
 
   // ===============================
   // Smooth Scroll
@@ -100,9 +118,10 @@ border-white/10">
           </a> */}
 
             <a href="#home">
-          <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold whitespace-nowrap">
-            <span className="text-blue-500">Devjit</span>
-            <span className="text-white">Portfolio</span>
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold whitespace-nowrap">
+            <span className="text-blue-400">Devjit </span>
+            <span className="text-blue-500">.</span>
+            <span className="text-blue-200"> Portfolio</span>
           </h1>
           </a>
 
@@ -182,26 +201,177 @@ border-white/10">
           ))}
 
         </ul>
-          <a
-              href="/Devjit_Mondal.pdf"
-              download
-              className=" hidden lg:flex items-center gap-3 px-6 py-3 rounded-2xl
-              bg-blue-600
-              text-white
-              font-semibold
-              hover:scale-105
-              transition-all duration-300"
-                      >
-              <FaDownload className="text-xl" /> Resume
-            </a>
+          <motion.a
+  href="/Devjit_Mondal.pdf"
+  download="Devjit_Mondal_Resume.pdf"
+  whileHover={{
+    y: -2,
+    scale: 1.03,
+  }}
+  whileTap={{
+    scale: 0.97,
+  }}
+  aria-label="Download Devjit Mondal resume"
+  className="
+    group
+    relative
+    hidden
+    min-h-[48px]
+    shrink-0
+    items-center
+    gap-3
+    overflow-hidden
+    rounded-2xl
+    border
+    border-blue-500/25
+    bg-gradient-to-r
+    from-blue-500/10
+    to-cyan-500/5
+    px-3
+    py-2
+    text-white
+    shadow-[0_10px_30px_rgba(37,99,235,.15)]
+    backdrop-blur-xl
+    transition-all
+    duration-300
+    hover:border-blue-400/50
+    hover:shadow-[0_12px_35px_rgba(37,99,235,.28)]
+    lg:flex
+  "
+>
+  {/* Animated hover background */}
+
+  <span
+    className="
+      pointer-events-none
+      absolute
+      inset-0
+      -translate-x-full
+      bg-gradient-to-r
+      from-blue-600
+      via-blue-500
+      to-cyan-500
+      transition-transform
+      duration-500
+      ease-out
+      group-hover:translate-x-0
+    "
+  />
+
+  {/* Download icon */}
+
+  <span
+    className="
+      relative
+      z-10
+      flex
+      h-9
+      w-9
+      shrink-0
+      items-center
+      justify-center
+      rounded-xl
+      border
+      border-blue-500/25
+      bg-blue-500/15
+      text-blue-400
+      transition-all
+      duration-300
+      group-hover:border-white/20
+      group-hover:bg-white/15
+      group-hover:text-white
+    "
+  >
+    <FaDownload className="text-sm" />
+  </span>
+
+  {/* Button text */}
+
+  <span className="relative z-10 text-left leading-none">
+    <span
+      className="
+        block
+        text-[9px]
+        font-bold
+        uppercase
+        tracking-[0.18em]
+        text-slate-500
+        transition
+        group-hover:text-blue-100
+      "
+    >
+      Download
+    </span>
+
+    <span
+      className="
+        mt-1
+        block
+        text-sm
+        font-bold
+        text-white
+      "
+    >
+      My Resume
+    </span>
+  </span>
+
+  {/* CV badge */}
+
+  <span
+    className="
+      relative
+      z-10
+      rounded-lg
+      border
+      border-white/10
+      bg-white/5
+      px-2
+      py-1
+      text-[10px]
+      font-black
+      tracking-wider
+      text-blue-400
+      transition
+      group-hover:border-white/20
+      group-hover:bg-white/15
+      group-hover:text-white
+    "
+  >
+    CV
+  </span>
+</motion.a>
 
           {/* Mobile Button */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden text-white text-2xl"
-          >
-            {menuOpen ? <FaTimes /> : <FaBars />}
-          </button>
+<motion.a
+  href="/Devjit_Mondal.pdf"
+  download="Devjit_Mondal_Resume.pdf"
+  onClick={() => setMenuOpen(false)}
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  className="
+    mt-4
+    flex
+    w-full
+    items-center
+    justify-center
+    gap-3
+    rounded-xl
+    bg-blue-600
+    px-5
+    py-3.5
+    text-sm
+    font-semibold
+    text-white
+    shadow-[0_12px_30px_rgba(37,99,235,.28)]
+    transition
+    hover:bg-blue-500
+    lg:hidden
+  "
+>
+  <FaDownload />
+  Download Resume
+</motion.a>
         </div>
       </div>
 

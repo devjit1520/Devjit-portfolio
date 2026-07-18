@@ -12,7 +12,12 @@ font-family:Sora;
 body {
   margin: 0;
   font-family: Inter, sans-serif;
-  background: #020617;
+  overflow-x: hidden;
+  background: #010817;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.4);
   color: white;
 }
 

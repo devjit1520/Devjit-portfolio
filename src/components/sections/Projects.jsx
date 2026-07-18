@@ -1,289 +1,1090 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-import { AiOutlineJavaScript } from "react-icons/ai";
-import { MdHtml , MdCss , MdOutlineSdStorage , MdQuiz  } from "react-icons/md";
-import { SiVite } from "react-icons/si";
-import { LuListTodo } from "react-icons/lu";
-import { IoIosWallet } from "react-icons/io";
-
+import {
+  AnimatePresence,
+  motion,
+} from "framer-motion";
 
 import {
-  FaReact,
-  FaGithub,
+  FaArrowRight,
+  FaCheckCircle,
+  FaCode,
   FaExternalLinkAlt,
-  FaFigma,
-  FaNodeJs,
+  FaGithub,
+  FaLaptopCode,
+  FaReact,
 } from "react-icons/fa";
 
 import {
-  SiFirebase,
-  SiMongodb,
-  SiTailwindcss,
-} from "react-icons/si";
+  FiBarChart2,
+  FiFilter,
+  FiSmartphone,
+} from "react-icons/fi";
+
+import { LuListTodo } from "react-icons/lu";
+import { MdQuiz } from "react-icons/md";
+import { IoIosWallet } from "react-icons/io";
+
+/* =========================================================
+   FILTER OPTIONS
+========================================================= */
+
+const filterOptions = [
+  "All",
+  "React",
+  "JavaScript",
+];
+
+/* =========================================================
+   PROJECT DATA
+========================================================= */
+
+const projectsData = [
+  {
+    id: 1,
+    number: "01",
+    title: "FinTrack Pro",
+    category: "React",
+    featured: true,
+    status: "Featured Project",
+    image: "/projects/fintrack-pro.png",
+    imageAlt:
+      "FinTrack Pro personal finance dashboard",
+    description:
+      "A modern personal finance management application that helps users track income, expenses, budgets, savings goals, and financial performance through an intuitive dashboard.",
+    icon: IoIosWallet,
+    iconColor: "text-amber-400",
+    glowColor: "rgba(251,191,36,0.18)",
+    previewBackground: "bg-[#020b1f]",
+    iconBackground:
+      "bg-amber-500/10 border-amber-500/25",
+    statusStyle:
+      "bg-amber-500/10 border-amber-500/25 text-amber-400",
+    technologies: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "Vite",
+      "Framer Motion",
+      "Recharts",
+      "React Router",
+      "Local Storage",
+    ],
+    features: [
+      "Interactive Dashboard",
+      "Income & Expense Tracking",
+      "Budget Management",
+      "Savings Goals",
+      "Analytics & Charts",
+      "Responsive Design",
+    ],
+    deployment: "Vercel",
+    github:
+      "https://github.com/devjit1520/fintrack",
+    demo:
+      "https://fintrack-devjit.vercel.app/",
+  },
+
+  {
+    id: 2,
+    number: "02",
+    title: "Modern Todo Application",
+    category: "JavaScript",
+    featured: false,
+    status: "Open Source",
+        image: "/public/projects/todo-app.png",
+    imageAlt:
+      "Modern Todo Application",
+    description:
+      "A responsive task management application featuring task priorities, due dates, categories, editing, filtering, statistics, drag-and-drop sorting, and local storage persistence.",
+    icon: LuListTodo,
+    iconColor: "text-emerald-400",
+    glowColor: "rgba(52,211,153,0.18)",
+    previewBackground:
+      "bg-gradient-to-br from-emerald-500/20 via-green-500/10 to-transparent",
+    iconBackground:
+      "bg-emerald-500/10 border-emerald-500/25",
+    statusStyle:
+      "bg-blue-500/10 border-blue-500/25 text-blue-400",
+    technologies: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "SortableJS",
+      "Local Storage",
+      "Vite",
+    ],
+    features: [
+      "Task Categories",
+      "Priority Levels",
+      "Due Dates",
+      "Drag & Drop",
+    ],
+    deployment: "Vercel",
+    github:
+      "https://github.com/devjit1520",
+    demo:
+      "https://todo-managerrrr.vercel.app/",
+  },
+  {
+    id: 3,
+    number: "03",
+    title: "Quiz Application",
+    category: "React",
+    featured: false,
+    status: "Live",
+        image: "/public/projects/quiz-app.png",
+    imageAlt:
+      "FinTrack Pro personal finance dashboard",
+    description:
+      "An interactive quiz application featuring multiple questions, timed challenges, score tracking, instant results, responsive layouts, and animated completion feedback.",
+    icon: MdQuiz,
+    iconColor: "text-pink-400",
+    glowColor: "rgba(244,114,182,0.18)",
+    previewBackground:
+      "bg-gradient-to-br from-pink-500/20 via-violet-500/10 to-transparent",
+    iconBackground:
+      "bg-pink-500/10 border-pink-500/25",
+    statusStyle:
+      "bg-emerald-500/10 border-emerald-500/25 text-emerald-400",
+    technologies: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "Vite",
+      "Framer Motion",
+    ],
+    features: [
+      "Quiz Timer",
+      "Score Tracking",
+      "Instant Results",
+      "Responsive UI",
+    ],
+    deployment: "Vercel",
+    github:
+      "https://github.com/devjit1520",
+    demo:
+      "https://quiz-application-lyart-two.vercel.app/",
+  },
+];
+
+/* =========================================================
+   PROJECT PREVIEW
+========================================================= */
+
+function ProjectPreview({ project }) {
+  const [imageFailed, setImageFailed] =
+    useState(false);
+
+  const ProjectIcon = project.icon;
+
+  const hasProjectImage =
+    Boolean(project.image) && !imageFailed;
+
+  return (
+    <div
+      className={`
+        relative
+        overflow-hidden
+        rounded-[24px]
+        border
+        border-white/10
+        ${project.previewBackground}
+      `}
+    >
+      {/* Browser header */}
+      <div
+        className="
+          relative
+          z-30
+          flex
+          items-center
+          justify-between
+          border-b
+          border-white/10
+          bg-[#071128]/95
+          px-4
+          py-3
+          backdrop-blur-xl
+        "
+      >
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+          <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+          <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+        </div>
+
+        <div
+          className="
+            h-7
+            w-32
+            rounded-full
+            border
+            border-white/10
+            bg-white/5
+            sm:w-44
+          "
+        />
+
+        <FaCode className="text-slate-500" />
+      </div>
+
+      {/* Project screenshot or fallback icon */}
+      <div
+        className={`
+          relative
+          z-10
+          overflow-hidden
+          bg-[#020b1f]
+          ${
+            hasProjectImage
+              ? "aspect-[4/3]"
+              : project.featured
+                ? "min-h-[300px] lg:min-h-[345px]"
+                : "min-h-[230px]"
+          }
+        `}
+      >
+        {hasProjectImage ? (
+          <>
+            <motion.img
+              src={project.image}
+              alt={
+                project.imageAlt ||
+                `${project.title} project preview`
+              }
+              loading="lazy"
+              onError={() =>
+                setImageFailed(true)
+              }
+              whileHover={{
+                scale: 1.025,
+              }}
+              transition={{
+                duration: 0.55,
+                ease: "easeOut",
+              }}
+              className="
+                absolute
+                inset-0
+                h-full
+                w-full
+                object-cover
+                object-top
+              "
+            />
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+                bg-gradient-to-t
+                from-[#071128]/25
+                via-transparent
+                to-transparent
+              "
+            />
+          </>
+        ) : (
+          <div
+            className="
+              absolute
+              inset-0
+              flex
+              items-center
+              justify-center
+            "
+          >
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+                opacity-[0.05]
+                [background-image:linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)]
+                [background-size:30px_30px]
+              "
+            />
+
+            <motion.div
+              animate={{
+                scale: [1, 1.12, 1],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="
+                absolute
+                h-40
+                w-40
+                rounded-full
+                bg-blue-500/20
+                blur-[60px]
+              "
+            />
+
+            <motion.div
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 22,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="
+                absolute
+                h-40
+                w-40
+                rounded-full
+                border
+                border-dashed
+                border-white/20
+              "
+            />
+
+            <motion.div
+              whileHover={{
+                scale: 1.08,
+                rotate: 4,
+              }}
+              className={`
+                relative
+                flex
+                h-28
+                w-28
+                items-center
+                justify-center
+                rounded-[30px]
+                border
+                backdrop-blur-xl
+                ${project.iconBackground}
+              `}
+            >
+              <ProjectIcon
+                className={`
+                  text-6xl
+                  ${project.iconColor}
+                `}
+              />
+            </motion.div>
+          </div>
+        )}
+
+        {/* Deployment badge */}
+        <motion.div
+          animate={{
+            y: [0, -5, 0],
+          }}
+          transition={{
+            duration: 3.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            right-4
+            top-4
+            z-30
+            rounded-xl
+            border
+            border-white/10
+            bg-[#071128]/90
+            px-3
+            py-2
+            shadow-lg
+            backdrop-blur-xl
+          "
+        >
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="text-xs font-medium text-white">
+              {project.deployment}
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Production badge */}
+        <motion.div
+          animate={{
+            y: [0, 5, 0],
+          }}
+          transition={{
+            duration: 3.5,
+            delay: 0.4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            bottom-4
+            left-4
+            z-30
+            rounded-xl
+            border
+            border-white/10
+            bg-[#071128]/90
+            px-3
+            py-2
+            shadow-lg
+            backdrop-blur-xl
+          "
+        >
+          <div className="flex items-center gap-2">
+            <FaCheckCircle className="text-emerald-400" />
+            <span className="text-xs font-medium text-white">
+              Production Ready
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+function ProjectCard({ project, index }) {
+  const [mousePosition, setMousePosition] =
+    useState({ x: 0, y: 0 });
+
+  const [spotlightVisible, setSpotlightVisible] =
+    useState(false);
+
+  const handleMouseMove = (event) => {
+    const card =
+      event.currentTarget.getBoundingClientRect();
+
+    setMousePosition({
+      x: event.clientX - card.left,
+      y: event.clientY - card.top,
+    });
+  };
+
+  return (
+    <motion.article
+      layout
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() =>
+        setSpotlightVisible(true)
+      }
+      onMouseLeave={() =>
+        setSpotlightVisible(false)
+      }
+      initial={{
+        opacity: 0,
+        y: 40,
+        scale: 0.97,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      }}
+      exit={{
+        opacity: 0,
+        y: 20,
+        scale: 0.97,
+      }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.08,
+      }}
+      whileHover={{
+        y: -6,
+      }}
+      className={`
+        group
+        relative
+        overflow-hidden
+        rounded-[30px]
+        border
+        border-white/10
+        bg-white/[0.035]
+        shadow-[0_25px_80px_rgba(0,0,0,.28)]
+        backdrop-blur-xl
+        transition-all
+        duration-500
+        hover:border-blue-500/35
+        hover:shadow-[0_25px_90px_rgba(37,99,235,.14)]
+        ${
+          project.featured
+            ? "lg:col-span-2"
+            : ""
+        }
+      `}
+    >
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          transition-opacity
+          duration-300
+        "
+        style={{
+          opacity: spotlightVisible ? 1 : 0,
+          background: `
+            radial-gradient(
+              420px circle at
+              ${mousePosition.x}px
+              ${mousePosition.y}px,
+              ${project.glowColor},
+              transparent 68%
+            )
+          `,
+        }}
+      />
+
+      <span
+        className="
+          pointer-events-none
+          absolute
+          right-6
+          top-3
+          text-7xl
+          font-black
+          text-white/[0.035]
+          sm:text-8xl
+        "
+      >
+        {project.number}
+      </span>
+
+      <div
+        className={`
+          relative
+          z-10
+          grid
+          gap-0
+          ${
+            project.featured
+              ? "lg:grid-cols-[0.95fr_1.05fr]"
+              : ""
+          }
+        `}
+      >
+        <div
+          className={`
+            p-5
+            sm:p-6
+            ${
+              project.featured
+                ? "lg:pr-0"
+                : "pb-0"
+            }
+          `}
+        >
+          <ProjectPreview project={project} />
+        </div>
+
+        <div
+          className="
+            flex
+            h-full
+            flex-col
+            p-6
+            sm:p-7
+            lg:p-8
+          "
+        >
+          <div className="flex flex-wrap items-center gap-3">
+            <span
+              className={`
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                border
+                px-3.5
+                py-1.5
+                text-xs
+                font-semibold
+                ${project.statusStyle}
+              `}
+            >
+              <span className="h-2 w-2 rounded-full bg-current" />
+              {project.status}
+            </span>
+
+            <span
+              className="
+                rounded-full
+                border
+                border-blue-500/20
+                bg-blue-500/10
+                px-3.5
+                py-1.5
+                text-xs
+                font-semibold
+                text-blue-400
+              "
+            >
+              {project.category}
+            </span>
+          </div>
+
+          <h3
+            className="
+              mt-6
+              text-2xl
+              font-black
+              tracking-tight
+              text-white
+              transition
+              group-hover:text-blue-400
+              sm:text-3xl
+            "
+          >
+            {project.title}
+          </h3>
+
+          <p
+            className="
+              mt-4
+              text-sm
+              leading-7
+              text-slate-400
+              sm:text-base
+            "
+          >
+            {project.description}
+          </p>
+
+          <div
+            className={`
+              mt-6
+              grid
+              grid-cols-1
+              gap-3
+              ${
+                project.featured
+                  ? "sm:grid-cols-2"
+                  : ""
+              }
+            `}
+          >
+            {project.features
+              .slice(
+                0,
+                project.featured ? 6 : 4
+              )
+              .map((feature) => (
+                <div
+                  key={feature}
+                  className="
+                    flex
+                    items-center
+                    gap-2.5
+                    text-sm
+                    text-slate-300
+                  "
+                >
+                  <FaCheckCircle
+                    className={`
+                      shrink-0
+                      ${project.iconColor}
+                    `}
+                  />
+                  {feature}
+                </div>
+              ))}
+          </div>
+
+          <div
+            className="
+              mt-6
+              flex
+              flex-wrap
+              gap-3
+              border-y
+              border-white/10
+              py-4
+            "
+          >
+            <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-400">
+              <FiSmartphone className="text-blue-400" />
+              Fully Responsive
+            </span>
+
+            <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-400">
+              <FiBarChart2 className="text-emerald-400" />
+              Modern UI
+            </span>
+
+            <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-400">
+              <FaLaptopCode className="text-violet-400" />
+              {project.deployment}
+            </span>
+          </div>
+
+          <div className="mt-6">
+            <p
+              className="
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.18em]
+                text-slate-500
+              "
+            >
+              Technology Stack
+            </p>
+
+            <div className="mt-3 flex flex-wrap gap-2">
+              {project.technologies.map(
+                (technology) => (
+                  <span
+                    key={technology}
+                    className="
+                      rounded-full
+                      border
+                      border-white/10
+                      bg-slate-900/70
+                      px-3
+                      py-1.5
+                      text-xs
+                      font-medium
+                      text-slate-300
+                      transition
+                      hover:border-blue-500/30
+                      hover:bg-blue-500/10
+                      hover:text-blue-400
+                    "
+                  >
+                    {technology}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+
+          <div
+            className="
+              mt-auto
+              flex
+              flex-col
+              gap-3
+              pt-7
+              sm:flex-row
+            "
+          >
+            <motion.a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="
+                inline-flex
+                min-h-12
+                flex-1
+                items-center
+                justify-center
+                gap-2.5
+                rounded-xl
+                border
+                border-white/10
+                bg-white/5
+                px-5
+                py-3
+                text-sm
+                font-semibold
+                text-white
+                transition
+                hover:border-white/20
+                hover:bg-white/10
+              "
+            >
+              <FaGithub className="text-lg" />
+              Source Code
+            </motion.a>
+
+            <motion.a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="
+                group/button
+                inline-flex
+                min-h-12
+                flex-1
+                items-center
+                justify-center
+                gap-2.5
+                rounded-xl
+                bg-blue-600
+                px-5
+                py-3
+                text-sm
+                font-semibold
+                text-white
+                shadow-[0_12px_35px_rgba(37,99,235,.25)]
+                transition
+                hover:bg-blue-500
+              "
+            >
+              <FaExternalLinkAlt />
+              Live Demo
+              <FaArrowRight className="transition-transform group-hover/button:translate-x-1" />
+            </motion.a>
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+/* =========================================================
+   PROJECTS COMPONENT
+========================================================= */
 
 function Projects() {
-  const [filter, setFilter] = useState("All");
-
-  const filters = [];
-
-  const projects = [
-    {
-      id: 1,
-      title: "Portfolio Web Sites",
-      category: "",
-      featured: true,
-      status: "Live",
-
-      description:
-        "A modern and responsive developer portfolio website built with React and Tailwind CSS, featuring smooth animations, project showcases, and a contact form integration.",
-
-      icon: FaReact,
-      iconColor: "text-cyan-400",
-      glow: "rgba(34,211,238,0.18)",
-
-      tech: [
-        {
-          name: "React",
-          icon: FaReact,
-        },
-        {
-          name: "Tailwind",
-          icon: SiTailwindcss,
-        },
-        // {
-        //   name: "Firebase",
-        //   icon: SiFirebase,
-        // },
-      ],
-
-      performance: 98,
-      deployment: "Vercel",
-      responsive: true,
-
-      github: "https://github.com/devjit1520",
-      demo: "https://my-portfolio-iota-nine-63.vercel.app",
-    },
-
-    {
-      id: 2,
-      title: "Todo Apllication",
-      // category: "Full Stack",
-      status: "Open Source",
-
-      description:
-        "A modern task management application , task priorities, due dates, categories, statistics dashboard, and local storage support.",
-
-      icon: LuListTodo,
-      iconColor: "text-green-500",
-      glow: "rgba(34,197,94,0.18)",
-
-      tech: [
-        {
-          name: "React",
-          icon: FaReact,
-        },
-        {
-          name: "JavaScript ",
-          icon: AiOutlineJavaScript,
-        },
-        {
-          name: "HTML5",
-          icon: MdHtml,
-        },
-         {
-          name: "CSS3",
-          icon: MdCss ,
-        },
-         {
-          name: "SortableJS",
-          icon: AiOutlineJavaScript,
-        },
-         {
-          name: "Local Storage",
-          icon: MdOutlineSdStorage,
-        },
-         {
-          name: "Vite",
-          icon: SiVite ,
-        },
-      ],
-
-      performance: 95,
-      deployment: "Render",
-      responsive: true,
-
-      github: "https://github.com/devjit1520",
-      demo: "https://todo-managerrrr.vercel.app/",
-    },
-
-    {
-      id: 3,
-      title: "Quiz Application",
-      category: "",
-      status: "Featured",
-
-      description:
-        "An interactive quiz application with multiple categories, timer, score tracking, instant results, and a fully responsive modern interface.",
-
-      icon: MdQuiz ,
-      iconColor: "text-pink-500",
-      glow: "rgba(236,72,153,0.18)",
-
-      tech: [
-        {
-          name: "JavaScript",
-          icon: AiOutlineJavaScript,
-        },
-        {
-          name: "React",
-          icon: FaReact,
-        },
-        {
-          name: "Tailwind",
-          icon: SiTailwindcss,
-        },
-        {
-          name: "Vite",
-          icon: SiVite,
-        },
-      ],
-
-      performance: 99,
-      deployment: "Vercel",
-      responsive: true,
-
-      github: "https://github.com/devjit1520",
-      demo: "https://quiz-application-lyart-two.vercel.app/",
-    },
-     {
-      id: 4,
-      title: "Finance Track Application",
-      category: "",
-      status: "Featured",
-
-      description:
-        "FinTrack Pro is a modern and responsive personal finance management web application designed to help users track income, expenses, budgets, savings goals, and financial performance in one place. The application features an intuitive dashboard with real-time financial insights, interactive charts, premium glassmorphism UI, and smooth animations to deliver an engaging user experience.",
-
-      icon: IoIosWallet  ,
-      iconColor: "text-yellow-500",
-      glow: "rgba(255, 255, 0, 0.18)",
-
-      tech: [
-        {
-          name: "JavaScript",
-          icon: AiOutlineJavaScript,
-        },
-        {
-          name: "React",
-          icon: FaReact,
-        },
-        {
-          name: "Tailwind",
-          icon: SiTailwindcss,
-        },
-        {
-          name: "Vite",
-          icon: SiVite,
-        },
-        {
-          name: "Framer Motion",
-          icon: SiVite,
-        },
-        {
-          name: "React Router DOM",
-          icon: SiVite,
-        },
-        {
-          name: "Recharts",
-          icon: SiVite,
-        },
-        {
-          name: "React Circular Progressbar",
-          icon: SiVite,
-        },
-        {
-          name: "React CountUp",
-          icon: SiVite,
-        },
-      ],
-
-      performance: 99,
-      deployment: "Vercel",
-      responsive: true,
-
-      github: "https://github.com/devjit1520",
-      demo: "#",
-    },
-  ];
+  const [activeFilter, setActiveFilter] =
+    useState("All");
 
   const filteredProjects =
-    filter === "All"
-      ? projects
-      : projects.filter(
+    activeFilter === "All"
+      ? projectsData
+      : projectsData.filter(
           (project) =>
-            project.category === filter
+            project.category === activeFilter
         );
 
   return (
     <section
       id="projects"
-      className="py-10 bg-slate-950 relative overflow-hidden"
+      className="
+        relative
+        overflow-hidden
+        bg-[#010817]
+  
+        sm:py-8
+      "
     >
-      {/* Background Glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="
+            absolute
+            -left-52
+            top-24
+            h-[480px]
+            w-[480px]
+            rounded-full
+            bg-blue-600/10
+            blur-[160px]
+          "
+        />
 
-      <div className="absolute top-20 left-20 w-80 h-80 bg-blue-500/10 blur-[120px]" />
+        <div
+          className="
+            absolute
+            -right-48
+            bottom-16
+            h-[480px]
+            w-[480px]
+            rounded-full
+            bg-cyan-500/10
+            blur-[160px]
+          "
+        />
 
-      <div className="absolute bottom-20 right-20 w-80 h-80 bg-cyan-500/10 blur-[120px]" />
+        <div
+          className="
+            absolute
+            inset-0
+            opacity-[0.025]
+            [background-image:linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)]
+            [background-size:48px_48px]
+          "
+        />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div
+          className="
+            absolute
+            inset-0
+            bg-[radial-gradient(circle_at_center,transparent_20%,#010817_88%)]
+          "
+        />
+      </div>
 
-        {/* Heading */}
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          max-w-7xl
+          px-5
+          sm:px-8
+          lg:px-10
+        "
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65 }}
+          className="mx-auto max-w-3xl text-center"
+        >
 
-        <div className="text-center mb-16">
 
-          <h2 className="text-5xl font-bold">
-            My Projects
+          <h2
+            className="
+              mt-6
+              text-4xl
+              font-black
+              tracking-tight
+              text-white
+              sm:text-5xl
+              lg:text-6xl
+            "
+          >
+          <div
+            className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              border
+              border-blue-500/25
+              bg-blue-500/10
+              px-4
+              py-2
+              text-xl
+              font-bold
+              uppercase
+              tracking-[0.22em]
+              text-blue-400
+            "
+          >
+            <FaLaptopCode />
+            Featured Work
+          </div>
           </h2>
 
-          <p className="text-slate-400 mt-5 max-w-2xl mx-auto">
-            A collection of projects that showcase
-            my passion for building beautiful and
-            modern web experiences.
+          <p
+            className="
+              mx-auto
+              mt-6
+              max-w-2xl
+              text-base
+              leading-8
+              text-slate-400
+              sm:text-lg
+            "
+          >
+            A collection of responsive web applications
+            that demonstrate my frontend development,
+            problem-solving, UI design, and React skills.
           </p>
 
-           <div className="w-24 h-1 bg-blue-500 mx-auto mb-12 mt-5"></div>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 120 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.25,
+            }}
+            className="
+              mx-auto
+              mt-7
+              h-1
+              rounded-full
+              bg-gradient-to-r
+              from-blue-600
+              to-cyan-400
+              shadow-[0_0_18px_rgba(59,130,246,.7)]
+            "
+          />
+        </motion.div>
 
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.55,
+            delay: 0.15,
+          }}
+          className="
+            mx-auto
+            mt-10
+            flex
+            w-fit
+            max-w-full
+            flex-wrap
+            items-center
+            justify-center
+            gap-2
+            rounded-2xl
+            border
+            border-white/10
+            bg-white/[0.035]
+            p-2
+            backdrop-blur-xl
+          "
+        >
+          <div
+            className="
+              hidden
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-xl
+              text-slate-500
+              sm:flex
+            "
+          >
+            <FiFilter />
+          </div>
 
-        {/* Filters */}
-
-        {/* <div className="flex justify-center flex-wrap gap-4">
-
-          {filters.map((item) => (
+          {filterOptions.map((filter) => (
             <button
-              key={item}
-              onClick={() => setFilter(item)}
-              className={`px-6 py-3 rounded-full transition border backdrop-blur-xl
-              
-              ${
-                filter === item
-                  ? "bg-blue-600 border-blue-600"
-                  : "bg-white/5 border-white/10 hover:border-blue-500"
-              }`}
+              key={filter}
+              type="button"
+              onClick={() =>
+                setActiveFilter(filter)
+              }
+              className={`
+                rounded-xl
+                px-5
+                py-2.5
+                text-sm
+                font-semibold
+                transition-all
+                duration-300
+                ${
+                  activeFilter === filter
+                    ? "bg-blue-600 text-white shadow-[0_8px_25px_rgba(37,99,235,.3)]"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }
+              `}
             >
-              {item}
+              {filter}
             </button>
           ))}
+        </motion.div>
 
-        </div> */}
-
-        {/* Cards */}
-
-        <AnimatePresence mode="wait">
-
-          <div className="grid lg:grid-cols-2 gap-8 mb-10">
-
+        <motion.div
+          layout
+          className="
+            mt-12
+            grid
+            grid-cols-1
+            gap-7
+            lg:grid-cols-2
+          "
+        >
+          <AnimatePresence mode="popLayout">
             {filteredProjects.map(
               (project, index) => (
                 <ProjectCard
@@ -293,239 +1094,78 @@ function Projects() {
                 />
               )
             )}
+          </AnimatePresence>
+        </motion.div>
 
-          </div>
-
-        </AnimatePresence>
-
-      </div>
-    </section>
-  );
-}
-
-/* =====================================
-   PROJECT CARD
-===================================== */
-
-function ProjectCard({
-  project,
-  index,
-}) {
-  const [mouse, setMouse] = useState({
-    x: 0,
-    y: 0,
-  });
-
-  const Icon = project.icon;
-
-  const handleMouseMove = (e) => {
-    const rect =
-      e.currentTarget.getBoundingClientRect();
-
-    setMouse({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      initial={{
-        opacity: 0,
-        y: 40,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-      }}
-      whileHover={{
-        y: -10,
-        scale: 1.02,
-      }}
-      className={`relative overflow-hidden rounded-3xl
-      border border-white/10
-      bg-white/5
-      backdrop-blur-xl
-      hover:border-blue-500/50
-      hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]
-      transition-all duration-500
-      
-      ${
-        project.featured
-          ? "lg:col-span-1"
-          : ""
-      }`}
-    >
-      {/* Mouse Spotlight */}
-
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-          radial-gradient(
-            300px circle at
-            ${mouse.x}px ${mouse.y}px,
-            ${project.glow},
-            transparent 70%
-          )
-          `,
-        }}
-      />
-
-      {/* Number */}
-
-      <span
-        className="absolute top-6 right-6
-        text-8xl font-bold text-white/5"
-      >
-        0{project.id}
-      </span>
-
-      {/* Status */}
-
-      <div className="absolute top-6 left-6 z-20">
-
-        <span
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="
-          px-4 py-1
-          rounded-full
-          text-xs
-          bg-green-500/20
-          text-green-400
-          border
-          border-green-500/30
+            mt-12
+            flex
+            flex-col
+            items-center
+            justify-between
+            gap-5
+            rounded-3xl
+            border
+            border-blue-500/20
+            bg-gradient-to-r
+            from-blue-500/10
+            via-cyan-500/5
+            to-violet-500/10
+            px-6
+            py-6
+            backdrop-blur-xl
+            sm:flex-row
+            sm:px-8
           "
         >
-          {project.status}
-        </span>
+          <div>
+            <h3 className="text-xl font-bold text-white">
+              More projects are coming
+            </h3>
 
-      </div>
-
-      <div className="relative z-10 p-8">
-
-        {/* Icon */}
-
-        <div className="flex justify-center py-10">
-
-          <Icon
-            className={`text-8xl ${project.iconColor}`}
-          />
-
-        </div>
-
-        {/* Category */}
-
-        <span className="text-blue-400 text-sm">
-          {project.category}
-        </span>
-
-        {/* Title */}
-
-        <h3 className="text-3xl font-bold mt-3">
-          {project.title}
-        </h3>
-
-        {/* Description */}
-
-        <p className="text-slate-400 mt-4 leading-7">
-          {project.description}
-        </p>
-
-        {/* Stats */}
-
-        <div className="flex flex-wrap gap-5 mt-6 text-sm text-slate-300">
-
-          <span>
-            ⚡ {project.performance}
-            % Performance
-          </span>
-
-          <span>
-            📱 Responsive
-          </span>
-
-          <span>
-            🚀 {project.deployment}
-          </span>
-
-        </div>
-
-        {/* Tech Stack */}
-
-        <div className="flex flex-wrap gap-3 mt-8">
-
-          {project.tech.map((item) => {
-
-            const TechIcon = item.icon;
-
-            return (
-              <span
-                key={item.name}
-                className="
-                flex items-center gap-2
-                px-4 py-2
-                rounded-full
-                bg-slate-800/80
-                border border-white/10
-                hover:border-blue-500/30
-                transition
-                "
-              >
-                <TechIcon />
-
-                {item.name}
-              </span>
-            );
-          })}
-
-        </div>
-
-        {/* Buttons */}
-
-        <div className="flex gap-4 mt-8">
+            <p className="mt-2 text-sm leading-6 text-slate-400">
+              I continuously build new applications to
+              improve my development skills and solve
+              real-world problems.
+            </p>
+          </div>
 
           <a
-            href={project.github}
+            href="https://github.com/devjit1520"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
-            flex items-center gap-2
-            px-5 py-3
-            rounded-xl
-            bg-slate-800
-            hover:bg-slate-700
-            transition
+              group
+              inline-flex
+              shrink-0
+              items-center
+              gap-3
+              rounded-xl
+              border
+              border-blue-500/30
+              bg-blue-600
+              px-5
+              py-3
+              text-sm
+              font-semibold
+              text-white
+              shadow-[0_10px_30px_rgba(37,99,235,.25)]
+              transition
+              hover:bg-blue-500
             "
           >
-            <FaGithub />
-
-            GitHub
+            <FaGithub className="text-lg" />
+            View GitHub Profile
+            <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
           </a>
-
-          <a
-            href={project.demo}
-            className="
-            flex items-center gap-2
-            px-5 py-3
-            rounded-xl
-            bg-blue-600
-            hover:bg-blue-700
-            transition
-            "
-          >
-            <FaExternalLinkAlt />
-
-            Live Demo
-          </a>
-
-        </div>
-
+        </motion.div>
       </div>
-
-    </motion.div>
+    </section>
   );
 }
 
