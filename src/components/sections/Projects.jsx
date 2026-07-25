@@ -865,8 +865,9 @@ function Projects() {
         relative
         overflow-hidden
         bg-[#010817]
-  
+        py-5
         sm:py-8
+        lg:py-8
       "
     >
       <div className="pointer-events-none absolute inset-0">

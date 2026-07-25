@@ -343,35 +343,84 @@ border-white/10">
 </motion.a>
 
           {/* Mobile Button */}
-<motion.a
-  href="/Devjit_Mondal.pdf"
-  download="Devjit_Mondal_Resume.pdf"
-  onClick={() => setMenuOpen(false)}
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
+<button
+  type="button"
+  onClick={() =>
+    setMenuOpen((previousState) => !previousState)
+  }
+  aria-label={
+    menuOpen
+      ? "Close navigation menu"
+      : "Open navigation menu"
+  }
+  aria-expanded={menuOpen}
   className="
-    mt-4
-    flex
-    w-full
+    inline-flex
+    h-11
+    w-11
+    shrink-0
     items-center
     justify-center
-    gap-3
     rounded-xl
-    bg-blue-600
-    px-5
-    py-3.5
-    text-sm
-    font-semibold
+    border
+    border-white/10
+    bg-white/5
+    text-xl
     text-white
-    shadow-[0_12px_30px_rgba(37,99,235,.28)]
-    transition
-    hover:bg-blue-500
+    transition-all
+    duration-300
+    hover:border-blue-500/40
+    hover:bg-blue-500/10
+    hover:text-blue-400
     lg:hidden
   "
 >
-  <FaDownload />
-  Download Resume
-</motion.a>
+  <AnimatePresence mode="wait" initial={false}>
+    {menuOpen ? (
+      <motion.span
+        key="close"
+        initial={{
+          opacity: 0,
+          rotate: -90,
+        }}
+        animate={{
+          opacity: 1,
+          rotate: 0,
+        }}
+        exit={{
+          opacity: 0,
+          rotate: 90,
+        }}
+        transition={{
+          duration: 0.2,
+        }}
+      >
+        <FaTimes />
+      </motion.span>
+    ) : (
+      <motion.span
+        key="menu"
+        initial={{
+          opacity: 0,
+          rotate: 90,
+        }}
+        animate={{
+          opacity: 1,
+          rotate: 0,
+        }}
+        exit={{
+          opacity: 0,
+          rotate: -90,
+        }}
+        transition={{
+          duration: 0.2,
+        }}
+      >
+        <FaBars />
+      </motion.span>
+    )}
+  </AnimatePresence>
+</button>
         </div>
       </div>
 

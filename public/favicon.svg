@@ -1,32 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Devjit Mondal portfolio favicon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="bg" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2563EB"/>
-      <stop offset="0.55" stop-color="#0EA5E9"/>
-      <stop offset="1" stop-color="#06B6D4"/>
+    <linearGradient id="mitra-favicon-gradient" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"></stop>
+      <stop offset="0.5" stop-color="#5B5FEF"></stop>
+      <stop offset="1" stop-color="#8B5CF6"></stop>
     </linearGradient>
 
-    <linearGradient id="shine" x1="14" y1="10" x2="50" y2="54" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity="0.32"/>
-      <stop offset="0.48" stop-color="#FFFFFF" stop-opacity="0"/>
+    <linearGradient id="mitra-background-gradient" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151B31"></stop>
+      <stop offset="1" stop-color="#070A12"></stop>
     </linearGradient>
-
-    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
-      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#020617" flood-opacity="0.55"/>
-    </filter>
   </defs>
 
-  <rect width="64" height="64" rx="17" fill="#020817"/>
-  <rect x="3" y="3" width="58" height="58" rx="15" fill="url(#bg)" filter="url(#shadow)"/>
-  <path d="M11 7C24 3 42 5 55 16C46 12 29 12 16 19C12 16 10 12 11 7Z" fill="url(#shine)"/>
+  <rect x="3" y="3" width="58" height="58" rx="18" fill="url(#mitra-background-gradient)"></rect>
 
-  <g fill="none" stroke="#FFFFFF" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
-    <!-- D -->
-    <path d="M16 19V45H24C32 45 36 40 36 32C36 24 32 19 24 19H16Z"/>
-    <!-- M -->
-    <path d="M39 45V20L47 31L55 20V45"/>
-  </g>
+  <rect x="3.5" y="3.5" width="57" height="57" rx="17.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.12"></rect>
 
-  <circle cx="53" cy="12" r="3" fill="#A7F3D0"/>
-  <circle cx="53" cy="12" r="1.4" fill="#10B981"/>
+  <path d="
+      M12 37
+      C19 20 27 20 34 34
+      C41 48 49 45 54 25
+    " fill="none" stroke="url(#mitra-favicon-gradient)" stroke-width="7" stroke-linecap="round"></path>
+
+  <circle cx="13" cy="37" r="4" fill="#22D3EE"></circle>
+
+  <circle cx="53" cy="25" r="4" fill="#8B5CF6"></circle>
 </svg>

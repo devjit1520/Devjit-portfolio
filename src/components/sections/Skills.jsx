@@ -600,8 +600,8 @@ function Skills() {
         relative
         overflow-hidden
         bg-[#010817]
-        py-20
-        sm:py-24
+        py-5
+        sm:py-10
         lg:py-8
       "
     >

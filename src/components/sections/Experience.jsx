@@ -507,7 +507,9 @@ function Experience() {
         overflow-hidden
         bg-[#010817]
   
+ py-5
         sm:py-8
+        lg:py-8
       "
     >
       {/* =====================================================

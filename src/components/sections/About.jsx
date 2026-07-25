@@ -250,8 +250,8 @@ function About() {
         
         overflow-hidden
         bg-[#020B2D]
-        py-20
-        sm:py-24
+        py-5
+        sm:py-10
         lg:py-10
       "
     >

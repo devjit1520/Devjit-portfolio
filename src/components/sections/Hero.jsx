@@ -164,12 +164,15 @@ function FloatingCard({
       className={`
         absolute
         z-30
-        rounded-2xl
+        rounded-xl
         border
         border-white/10
         bg-[#08142f]/90
-        px-4
-        py-3
+        px-3
+        py-2
+        sm:rounded-2xl
+        sm:px-4
+        sm:py-3
         shadow-[0_18px_50px_rgba(0,0,0,0.4)]
         backdrop-blur-xl
         ${className}
@@ -282,7 +285,8 @@ function Hero() {
         overflow-hidden
         bg-[#010817]
         pt-24
-        pb-6
+        pb-10
+        sm:pb-8
         lg:h-screen
         lg:min-h-[760px]
         lg:pt-24
@@ -417,8 +421,9 @@ function Hero() {
           z-10
           mx-auto
           flex
-          h-full
+          h-auto
           max-w-7xl
+          lg:h-full
           flex-col
           px-5
           sm:px-8
@@ -435,7 +440,7 @@ function Hero() {
             flex-1
             grid-cols-1
             items-center
-            gap-8
+            gap-10
             lg:min-h-0
             lg:grid-cols-2
             lg:gap-12
@@ -538,11 +543,13 @@ function Hero() {
             <h1
               className="
                 mt-2
-                text-5xl
+                break-words
+                text-4xl
                 font-black
-                leading-none
+                leading-[1.05]
                 tracking-tight
                 text-white
+                min-[390px]:text-5xl
                 sm:text-6xl
                 lg:text-7xl
               "
@@ -555,10 +562,12 @@ function Hero() {
             <div
               className="
                 mt-3
-                min-h-[42px]
-                text-2xl
+                min-h-[36px]
+                text-xl
                 font-bold
                 text-blue-400
+                min-[390px]:text-2xl
+                sm:min-h-[42px]
                 sm:text-3xl
               "
             >
@@ -586,9 +595,10 @@ function Hero() {
               className="
                 mt-4
                 max-w-xl
-                text-base
+                text-sm
                 leading-7
                 text-slate-400
+                min-[390px]:text-base
                 lg:text-lg
               "
             >
@@ -623,6 +633,8 @@ function Hero() {
                   relative
                   inline-flex
                   min-h-14
+                  w-full
+                  sm:w-auto
                   overflow-hidden
                   items-center
                   justify-center
@@ -679,7 +691,9 @@ function Hero() {
                 className="
                   inline-flex
                   min-h-14
+                  w-full
                   items-center
+                  sm:w-auto
                   justify-center
                   gap-3
                   rounded-2xl
@@ -745,9 +759,11 @@ function Hero() {
                     }}
                     className={`
                       flex
-                      h-12
-                      w-12
+                      h-11
+                      w-11
                       items-center
+                      sm:h-12
+                      sm:w-12
                       justify-center
                       rounded-full
                       border
@@ -799,9 +815,10 @@ function Hero() {
           border
           px-3
           py-2
-          text-xs
+          text-[11px]
           font-semibold
           backdrop-blur-xl
+          min-[390px]:text-xs
           lg:text-sm
           ${technology.background}
           ${technology.border}
@@ -842,7 +859,8 @@ function Hero() {
               className="
                 relative
                 mx-auto
-                min-h-[390px]
+                h-[360px]
+                min-h-0
                 w-full
                 max-w-[600px]
                 overflow-hidden
@@ -856,6 +874,8 @@ function Hero() {
                 p-5
                 shadow-[0_25px_80px_rgba(0,0,0,0.45)]
                 backdrop-blur-2xl
+                min-[390px]:h-[390px]
+                sm:h-auto
                 sm:min-h-[460px]
                 lg:h-[480px]
                 lg:min-h-0
@@ -1002,8 +1022,9 @@ function Hero() {
                   z-10
                   flex
                   -translate-x-1/2
-                  -translate-y-[41%]
+                  -translate-y-[38%]
                   items-center
+                  sm:-translate-y-[41%]
                   justify-center
                 "
               >
@@ -1021,11 +1042,13 @@ function Hero() {
                   }}
                   className="
                     absolute
-                    h-[255px]
-                    w-[255px]
+                    h-[215px]
+                    w-[215px]
                     rounded-full
                     bg-blue-500/25
-                    blur-[65px]
+                    blur-[60px]
+                    min-[390px]:h-[245px]
+                    min-[390px]:w-[245px]
                     sm:h-[330px]
                     sm:w-[330px]
                   "
@@ -1044,12 +1067,14 @@ function Hero() {
                   }}
                   className="
                     absolute
-                    h-[260px]
-                    w-[260px]
+                    h-[225px]
+                    w-[225px]
                     rounded-full
                     border
                     border-dashed
                     border-blue-400/45
+                    min-[390px]:h-[255px]
+                    min-[390px]:w-[255px]
                     sm:h-[335px]
                     sm:w-[335px]
                     lg:h-[350px]
@@ -1070,11 +1095,13 @@ function Hero() {
                   }}
                   className="
                     absolute
-                    h-[275px]
-                    w-[275px]
+                    h-[238px]
+                    w-[238px]
                     rounded-full
                     border
                     border-cyan-400/15
+                    min-[390px]:h-[270px]
+                    min-[390px]:w-[270px]
                     sm:h-[350px]
                     sm:w-[350px]
                     lg:h-[365px]
@@ -1087,13 +1114,15 @@ function Hero() {
                   alt="Devjit Mondal"
                   className="
                     relative
-                    h-[230px]
-                    w-[230px]
+                    h-[200px]
+                    w-[200px]
                     rounded-full
                     border-[4px]
                     border-blue-500
                     object-cover
                     shadow-[0_0_55px_rgba(37,99,235,0.45)]
+                    min-[390px]:h-[225px]
+                    min-[390px]:w-[225px]
                     sm:h-[300px]
                     sm:w-[300px]
                     lg:h-[315px]
@@ -1136,24 +1165,28 @@ function Hero() {
 
               <FloatingCard
                 className="
-                  left-4
-                  top-5
+                  left-3
+                  top-3
+                  max-w-[180px]
                   sm:left-7
                   sm:top-7
+                  sm:max-w-none
                 "
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <HiCheckCircle
                     className="
-                      text-xl
+                      shrink-0
+                      text-lg
                       text-emerald-400
+                      sm:text-xl
                     "
                   />
 
                   <div>
                     <h3
                       className="
-                        text-sm
+                        text-xs
                         font-bold
                         text-white
                         sm:text-base
@@ -1181,25 +1214,32 @@ function Hero() {
 
               <FloatingCard
                 className="
+                  bottom-3
                   right-2
-                  top-[42%]
+                  top-auto
+                  max-w-[165px]
+                  sm:bottom-auto
                   sm:right-3
+                  sm:top-[42%]
+                  sm:max-w-none
                 "
                 delay={0.5}
                 distance={12}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <HiLightningBolt
                     className="
-                      text-2xl
+                      shrink-0
+                      text-xl
                       text-yellow-400
+                      sm:text-2xl
                     "
                   />
 
                   <div>
                     <h3
                       className="
-                        text-sm
+                        text-xs
                         font-bold
                         text-white
                         sm:text-base
@@ -1227,26 +1267,30 @@ function Hero() {
 
               <FloatingCard
                 className="
-                  bottom-10
+                  bottom-3
                   left-2
+                  max-w-[115px]
                   sm:bottom-20
                   sm:left-5
+                  sm:max-w-none
                 "
                 delay={1}
                 distance={10}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <FaReact
                     className="
-                      text-2xl
+                      shrink-0
+                      text-xl
                       text-cyan-400
+                      sm:text-2xl
                     "
                   />
 
                   <div>
                     <h3
                       className="
-                        text-sm
+                        text-xs
                         font-bold
                         text-white
                         sm:text-base
@@ -1322,11 +1366,13 @@ function Hero() {
             delay: 0.3,
           }}
           className="
-            mt-3
+            mt-6
             grid
             grid-cols-2
-            // overflow-hidden
+            overflow-hidden
             rounded-3xl
+            sm:mt-4
+            lg:mt-3
             border
             border-white/10
             bg-[#071020]/90
@@ -1348,10 +1394,13 @@ function Hero() {
                 }}
 className={`
   flex
-  min-h-[74px]
+  min-h-[88px]
   items-center
-  gap-3
-  p-4
+  gap-2
+  p-3
+  sm:gap-3
+  sm:p-4
+  lg:min-h-[74px]
   ${
     index % 2 === 0
       ? "border-r border-white/10"
@@ -1372,9 +1421,11 @@ className={`
                 <div
                   className={`
                     flex
-                    h-10
-                    w-10
+                    h-9
+                    w-9
                     shrink-0
+                    sm:h-10
+                    sm:w-10
                     items-center
                     justify-center
                     rounded-xl
@@ -1385,10 +1436,11 @@ className={`
                   <Icon />
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <h3
                     className="
-                      text-xl
+                      text-lg
+                      sm:text-xl
                       font-black
                       text-white
                       lg:text-2xl
@@ -1399,8 +1451,10 @@ className={`
 
                   <p
                     className="
-                      text-xs
+                      text-[11px]
+                      leading-4
                       text-slate-400
+                      sm:text-xs
                       lg:text-sm
                     "
                   >
