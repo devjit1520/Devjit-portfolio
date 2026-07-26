@@ -15,6 +15,10 @@ import Skills from "./components/sections/Skills";
 import Projects from "./components/sections/Projects";
 import Experience from "./components/sections/Experience";
 import Contact from "./components/sections/Contact";
+import ScrollProgress from "./components/common/ScrollProgress";
+import BackToTop from "./components/common/BackToTop";
+
+import SkipToContent from "./components/common/SkipToContent";
 
 function App() {
   const [loading, setLoading] =
@@ -34,9 +38,12 @@ function App() {
           />
         )}
       </AnimatePresence>
+        <ScrollProgress />
+        <SkipToContent />
 
-      <main className="min-h-screen bg-[#010817] text-white">
         <Navbar />
+      <main className="min-h-screen bg-[#010817] text-white">
+        
 
         <Hero />
         <About />
@@ -45,6 +52,8 @@ function App() {
         <Experience />
         <Contact />
       </main>
+
+        <BackToTop />
     </>
   );
 }

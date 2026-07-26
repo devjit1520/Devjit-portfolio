@@ -1364,41 +1364,7 @@ ${formData.name}`
               React and Tailwind CSS
             </p>
 
-            <button
-              type="button"
-              onClick={() =>
-                scrollToSection("home")
-              }
-              className="
-                group
-                inline-flex
-                items-center
-                gap-3
-                rounded-xl
-                border
-                border-blue-500/25
-                bg-blue-500/10
-                px-5
-                py-3
-                text-sm
-                font-semibold
-                text-blue-400
-                transition
-                hover:bg-blue-600
-                hover:text-white
-              "
-            >
-              Back to Top
 
-              <FiArrowUpRight
-                className="
-                  transition-transform
-                  duration-300
-                  group-hover:-translate-y-1
-                  group-hover:translate-x-1
-                "
-              />
-            </button>
           </div>
         </div>
       </footer>
