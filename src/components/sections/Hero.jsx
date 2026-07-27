@@ -284,12 +284,12 @@ function Hero() {
         min-h-screen
         overflow-hidden
         bg-[#010817]
-        pt-24
+        pt-30
         pb-10
         sm:pb-8
         lg:h-screen
-        lg:min-h-[760px]
-        lg:pt-24
+        lg:min-h-[800px]
+        lg:pt-30
       "
     >
       {/* =====================================================

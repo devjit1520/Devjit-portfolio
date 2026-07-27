@@ -3,6 +3,8 @@
 
 html {
   scroll-behavior: smooth;
+    /* scroll-padding-top: 110px; */
+  overflow-x: hidden;
 }
 
 h1,h2,h3{
@@ -11,9 +13,16 @@ font-family:Sora;
 
 body {
   margin: 0;
+    min-width: 320px;
+  min-height: 100%;
   font-family: Inter, sans-serif;
   overflow-x: hidden;
   background: #010817;
+}
+
+
+#root {
+  min-height: 100vh;
 }
 
 ::selection {
