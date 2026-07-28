@@ -18,7 +18,7 @@ import Contact from "./components/sections/Contact";
 import ScrollProgress from "./components/common/ScrollProgress";
 import BackToTop from "./components/common/BackToTop";
 
-import SkipToContent from "./components/common/SkipToContent";
+
 
 function App() {
   const [loading, setLoading] =
@@ -39,7 +39,7 @@ function App() {
         )}
       </AnimatePresence>
         <ScrollProgress />
-        <SkipToContent />
+     
 
         <Navbar />
       <main className="min-h-screen bg-[#010817] text-white">

@@ -1,323 +1,697 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import {
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
-function LoadingScreen({ onComplete }) {
-  const [progress, setProgress] = useState(0);
+import {
+  AnimatePresence,
+  motion,
+} from "framer-motion";
+
+import {
+  FaCode,
+} from "react-icons/fa";
+
+/* =========================================================
+   HUD RING SEGMENTS
+========================================================= */
+
+const ringSegments = Array.from(
+  { length: 36 },
+  (_, index) => index
+);
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+function LoadingScreen({
+  minimumDuration = 2500,
+  onComplete,
+}) {
+  const [progress, setProgress] =
+    useState(0);
+
+  const [visible, setVisible] =
+    useState(true);
+
+  const statusText = useMemo(() => {
+    if (progress < 25) {
+      return "Initializing interface";
+    }
+
+    if (progress < 50) {
+      return "Loading components";
+    }
+
+    if (progress < 75) {
+      return "Preparing experience";
+    }
+
+    if (progress < 100) {
+      return "Almost ready";
+    }
+
+    return "Welcome";
+  }, [progress]);
 
   useEffect(() => {
-    const previousOverflow =
-      document.body.style.overflow;
+    const startedAt = Date.now();
 
-    document.body.style.overflow = "hidden";
+    const updateProgress = () => {
+      const elapsed =
+        Date.now() - startedAt;
 
-    const progressInterval = setInterval(() => {
-      setProgress((currentProgress) => {
-        if (currentProgress >= 100) {
-          clearInterval(progressInterval);
-          return 100;
-        }
-
-        return Math.min(
-          currentProgress + 2,
-          100
+      const calculatedProgress =
+        Math.min(
+          100,
+          Math.round(
+            (elapsed / minimumDuration) * 100
+          )
         );
-      });
-    }, 38);
 
-    const loadingTimer = setTimeout(() => {
-      onComplete();
-    }, 2300);
+      setProgress(calculatedProgress);
+
+      if (calculatedProgress >= 100) {
+        window.clearInterval(
+          progressInterval
+        );
+
+        window.setTimeout(() => {
+          setVisible(false);
+
+          window.setTimeout(() => {
+            onComplete?.();
+          }, 450);
+        }, 250);
+      }
+    };
+
+    const progressInterval =
+      window.setInterval(
+        updateProgress,
+        32
+      );
+
+    updateProgress();
 
     return () => {
-      clearInterval(progressInterval);
-      clearTimeout(loadingTimer);
-
-      document.body.style.overflow =
-        previousOverflow;
+      window.clearInterval(
+        progressInterval
+      );
     };
-  }, [onComplete]);
+  }, [
+    minimumDuration,
+    onComplete,
+  ]);
 
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{
-        opacity: 0,
-        scale: 1.03,
-      }}
-      transition={{
-        duration: 0.55,
-        ease: "easeInOut",
-      }}
-      className="
-        fixed
-        inset-0
-        z-[9999]
-        flex
-        items-center
-        justify-center
-        overflow-hidden
-        bg-[#010817]
-        px-5
-      "
-    >
-      {/* Background effects */}
-
-      <div className="pointer-events-none absolute inset-0">
+    <AnimatePresence>
+      {visible && (
         <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.2, 0.4, 0.2],
+          initial={{
+            opacity: 1,
+          }}
+          exit={{
+            opacity: 0,
           }}
           transition={{
-            duration: 3,
-            repeat: Infinity,
+            duration: 0.45,
             ease: "easeInOut",
           }}
           className="
-            absolute
-            left-1/2
-            top-1/2
-            h-[420px]
-            w-[420px]
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            bg-blue-600/20
-            blur-[130px]
-          "
-        />
-
-        <div
-          className="
-            absolute
+            fixed
             inset-0
-            opacity-[0.035]
-            [background-image:linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)]
-            [background-size:42px_42px]
+            z-[9999]
+            flex
+            items-center
+            justify-center
+            overflow-hidden
+            bg-[#010817]
+            px-5
           "
-        />
+          role="status"
+          aria-live="polite"
+          aria-label={`Loading portfolio ${progress}%`}
+        >
+          {/* =================================================
+              BACKGROUND EFFECTS
+          ================================================== */}
 
-        <div
-          className="
-            absolute
-            inset-0
-            bg-[radial-gradient(circle_at_center,transparent_15%,#010817_78%)]
-          "
-        />
-      </div>
-
-      {/* Main loader */}
-
-      <div className="relative z-10 w-full max-w-sm text-center">
-        {/* Logo animation */}
-
-        <div className="relative mx-auto h-28 w-28">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
+          <div
             className="
+              pointer-events-none
               absolute
               inset-0
-              rounded-[30px]
-              border
-              border-dashed
-              border-blue-400/50
-            "
-          />
-
-          <motion.div
-            animate={{
-              scale: [1, 1.08, 1],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="
-              absolute
-              inset-3
-              flex
-              items-center
-              justify-center
-              overflow-hidden
-              rounded-[24px]
-              border
-              border-blue-500/30
-              bg-gradient-to-br
-              from-blue-600
-              to-cyan-500
-              text-3xl
-              font-black
-              text-white
-              shadow-[0_0_45px_rgba(37,99,235,.5)]
             "
           >
-            DM
-
-            <motion.span
-              animate={{
-                x: ["-150%", "180%"],
-              }}
-              transition={{
-                duration: 1.7,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+            <div
               className="
-                pointer-events-none
                 absolute
-                inset-y-0
-                w-10
-                rotate-12
-                bg-white/25
-                blur-md
+                left-1/2
+                top-1/2
+                h-[520px]
+                w-[520px]
+                -translate-x-1/2
+                -translate-y-1/2
+                rounded-full
+                bg-blue-600/10
+                blur-[150px]
               "
             />
-          </motion.div>
-        </div>
 
-        {/* Brand */}
+            <div
+              className="
+                absolute
+                left-[18%]
+                top-[18%]
+                h-56
+                w-56
+                rounded-full
+                bg-cyan-500/10
+                blur-[110px]
+              "
+            />
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 18,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-          }}
-          className="mt-8"
-        >
-          <h1
-            className="
-              text-3xl
-              font-black
-              tracking-tight
-              text-white
-              sm:text-4xl
-            "
-          >
-            <span className="text-blue-500">
-              Devjit
-            </span>
+            <div
+              className="
+                absolute
+                bottom-[16%]
+                right-[15%]
+                h-64
+                w-64
+                rounded-full
+                bg-violet-500/10
+                blur-[120px]
+              "
+            />
 
-            <span className="text-white">
-              {" "}
-              Portfolio
-            </span>
-          </h1>
+            <div
+              className="
+                absolute
+                inset-0
+                opacity-[0.025]
+                [background-image:linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)]
+                [background-size:46px_46px]
+              "
+            />
 
-          <p
-            className="
-              mt-3
-              text-xs
-              font-bold
-              uppercase
-              tracking-[0.28em]
-              text-slate-500
-            "
-          >
-            Frontend Developer
-          </p>
-        </motion.div>
+            <div
+              className="
+                absolute
+                inset-0
+                bg-[radial-gradient(circle_at_center,transparent_10%,#010817_82%)]
+              "
+            />
+          </div>
 
-        {/* Loading text */}
+          {/* =================================================
+              HUD LOADER
+          ================================================== */}
 
-        <div className="mt-10 flex items-center justify-between">
-          <p className="text-sm font-medium text-slate-400">
-            Preparing experience
-          </p>
-
-          <p className="text-sm font-bold text-blue-400">
-            {progress}%
-          </p>
-        </div>
-
-        {/* Progress bar */}
-
-        <div
-          className="
-            mt-3
-            h-2
-            overflow-hidden
-            rounded-full
-            border
-            border-white/5
-            bg-slate-900
-          "
-        >
           <motion.div
+            initial={{
+              opacity: 0,
+              y: 24,
+              scale: 0.96,
+            }}
             animate={{
-              width: `${progress}%`,
+              opacity: 1,
+              y: 0,
+              scale: 1,
             }}
             transition={{
-              duration: 0.12,
-              ease: "linear",
+              duration: 0.65,
+              ease: [0.22, 1, 0.36, 1],
             }}
             className="
               relative
-              h-full
-              rounded-full
-              bg-gradient-to-r
-              from-blue-600
-              via-blue-400
-              to-cyan-400
-              shadow-[0_0_18px_rgba(59,130,246,.8)]
+              z-10
+              flex
+              w-full
+              max-w-xl
+              flex-col
+              items-center
             "
           >
-            <span
+            {/* Main HUD circle */}
+
+            <div
               className="
-                absolute
-                right-0
-                top-1/2
-                h-3
-                w-3
-                -translate-y-1/2
-                rounded-full
-                bg-white
-                shadow-[0_0_14px_rgba(255,255,255,.9)]
+                relative
+                flex
+                h-[290px]
+                w-[290px]
+                items-center
+                justify-center
+                sm:h-[340px]
+                sm:w-[340px]
               "
-            />
+            >
+              {/* Outer glow */}
+
+              <motion.div
+                animate={{
+                  scale: [1, 1.035, 1],
+                  opacity: [0.35, 0.7, 0.35],
+                }}
+                transition={{
+                  duration: 3.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="
+                  absolute
+                  inset-7
+                  rounded-full
+                  bg-blue-500/10
+                  blur-[42px]
+                "
+              />
+
+              {/* Outer rotating ring */}
+
+              <motion.div
+                animate={{
+                  rotate: 360,
+                }}
+                transition={{
+                  duration: 24,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="
+                  absolute
+                  inset-0
+                  rounded-full
+                  border
+                  border-dashed
+                  border-blue-400/20
+                "
+              />
+
+              {/* Counter-rotating ring */}
+
+              <motion.div
+                animate={{
+                  rotate: -360,
+                }}
+                transition={{
+                  duration: 16,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="
+                  absolute
+                  inset-5
+                  rounded-full
+                  border
+                  border-violet-400/20
+                "
+              >
+                <span
+                  className="
+                    absolute
+                    left-1/2
+                    top-[-5px]
+                    h-2.5
+                    w-2.5
+                    -translate-x-1/2
+                    rounded-full
+                    bg-cyan-400
+                    shadow-[0_0_18px_rgba(34,211,238,.95)]
+                  "
+                />
+
+                <span
+                  className="
+                    absolute
+                    bottom-[-5px]
+                    left-1/2
+                    h-2.5
+                    w-2.5
+                    -translate-x-1/2
+                    rounded-full
+                    bg-violet-400
+                    shadow-[0_0_18px_rgba(167,139,250,.95)]
+                  "
+                />
+              </motion.div>
+
+              {/* Segment marks */}
+
+              <div
+                className="
+                  absolute
+                  inset-4
+                  rounded-full
+                "
+              >
+                {ringSegments.map(
+                  (segment) => {
+                    const segmentProgress =
+                      (segment /
+                        ringSegments.length) *
+                      100;
+
+                    const active =
+                      segmentProgress <=
+                      progress;
+
+                    return (
+                      <span
+                        key={segment}
+                        className="
+                          absolute
+                          left-1/2
+                          top-0
+                          h-3
+                          w-[3px]
+                          origin-[50%_151px]
+                          rounded-full
+                          sm:origin-[50%_171px]
+                        "
+                        style={{
+                          transform: `
+                            translateX(-50%)
+                            rotate(${
+                              segment * 10
+                            }deg)
+                          `,
+                          background: active
+                            ? segment % 3 === 0
+                              ? "#22d3ee"
+                              : "#3b82f6"
+                            : "rgba(148,163,184,.15)",
+                          boxShadow: active
+                            ? "0 0 12px rgba(59,130,246,.7)"
+                            : "none",
+                        }}
+                      />
+                    );
+                  }
+                )}
+              </div>
+
+              {/* Progress SVG */}
+
+              <svg
+                viewBox="0 0 260 260"
+                className="
+                  absolute
+                  inset-[32px]
+                  -rotate-90
+                "
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient
+                    id="hudProgressGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                  >
+                    <stop
+                      offset="0%"
+                      stopColor="#2563eb"
+                    />
+
+                    <stop
+                      offset="55%"
+                      stopColor="#22d3ee"
+                    />
+
+                    <stop
+                      offset="100%"
+                      stopColor="#8b5cf6"
+                    />
+                  </linearGradient>
+                </defs>
+
+                <circle
+                  cx="130"
+                  cy="130"
+                  r="110"
+                  fill="none"
+                  stroke="rgba(148,163,184,.10)"
+                  strokeWidth="4"
+                />
+
+                <motion.circle
+                  cx="130"
+                  cy="130"
+                  r="110"
+                  fill="none"
+                  stroke="url(#hudProgressGradient)"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  pathLength="100"
+                  initial={{
+                    strokeDasharray: "0 100",
+                  }}
+                  animate={{
+                    strokeDasharray: `${progress} 100`,
+                  }}
+                  transition={{
+                    duration: 0.08,
+                    ease: "linear",
+                  }}
+                  className="
+                    drop-shadow-[0_0_8px_rgba(34,211,238,.55)]
+                  "
+                />
+              </svg>
+
+              {/* Inner glass circle */}
+
+              <div
+                className="
+                  relative
+                  flex
+                  h-[185px]
+                  w-[185px]
+                  flex-col
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/[0.08]
+                  bg-[#0a1324]/90
+                  shadow-[inset_8px_8px_22px_rgba(0,0,0,.38),inset_-6px_-6px_18px_rgba(59,130,246,.04),0_18px_50px_rgba(0,0,0,.35)]
+                  backdrop-blur-2xl
+                  sm:h-[220px]
+                  sm:w-[220px]
+                "
+              >
+                <motion.div
+                  animate={{
+                    y: [0, -3, 0],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-2xl
+                    border
+                    border-blue-500/20
+                    bg-blue-500/10
+                    text-xl
+                    text-blue-400
+                    shadow-[0_0_24px_rgba(59,130,246,.18)]
+                  "
+                >
+                  <FaCode />
+                </motion.div>
+
+                <p
+                  className="
+                    mt-5
+                    text-[11px]
+                    font-bold
+                    uppercase
+                    tracking-[0.32em]
+                    text-slate-500
+                    sm:text-xs
+                  "
+                >
+                  Devjit Portfolio
+                </p>
+
+                <motion.p
+                  key={progress}
+                  initial={{
+                    opacity: 0.5,
+                    scale: 0.96,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  className="
+                    mt-2
+                    text-4xl
+                    font-black
+                    tracking-tight
+                    text-white
+                    sm:text-5xl
+                  "
+                >
+                  {progress}
+                  <span
+                    className="
+                      ml-1
+                      text-lg
+                      font-semibold
+                      text-blue-400
+                      sm:text-xl
+                    "
+                  >
+                    %
+                  </span>
+                </motion.p>
+
+                <p
+                  className="
+                    mt-2
+                    px-3
+                    text-center
+                    text-xs
+                    font-medium
+                    text-slate-400
+                    sm:text-sm
+                  "
+                >
+                  {statusText}
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom loading information */}
+
+            <div
+              className="
+                mt-7
+                w-full
+                max-w-md
+              "
+            >
+              <div
+                className="
+                  flex
+                  items-center
+                  justify-between
+                  gap-4
+                "
+              >
+                <p
+                  className="
+                    text-xs
+                    font-semibold
+                    uppercase
+                    tracking-[0.18em]
+                    text-slate-500
+                  "
+                >
+                  System loading
+                </p>
+
+                <p
+                  className="
+                    text-xs
+                    font-bold
+                    text-blue-400
+                  "
+                >
+                  {progress}/100
+                </p>
+              </div>
+
+              <div
+                className="
+                  mt-3
+                  h-1.5
+                  overflow-hidden
+                  rounded-full
+                  bg-white/[0.06]
+                "
+              >
+                <motion.div
+                  initial={{
+                    width: 0,
+                  }}
+                  animate={{
+                    width: `${progress}%`,
+                  }}
+                  transition={{
+                    duration: 0.08,
+                    ease: "linear",
+                  }}
+                  className="
+                    h-full
+                    rounded-full
+                    bg-gradient-to-r
+                    from-blue-600
+                    via-cyan-400
+                    to-violet-500
+                    shadow-[0_0_18px_rgba(34,211,238,.65)]
+                  "
+                />
+              </div>
+
+              <div
+                className="
+                  mt-5
+                  flex
+                  items-center
+                  justify-center
+                  gap-2
+                "
+              >
+                {[0, 1, 2].map(
+                  (dot) => (
+                    <motion.span
+                      key={dot}
+                      animate={{
+                        opacity: [
+                          0.25,
+                          1,
+                          0.25,
+                        ],
+                        scale: [
+                          0.85,
+                          1.15,
+                          0.85,
+                        ],
+                      }}
+                      transition={{
+                        duration: 1.2,
+                        repeat: Infinity,
+                        delay: dot * 0.18,
+                      }}
+                      className="
+                        h-2
+                        w-2
+                        rounded-full
+                        bg-blue-400
+                      "
+                    />
+                  )
+                )}
+              </div>
+            </div>
           </motion.div>
-        </div>
-
-        {/* Animated dots */}
-
-        <div className="mt-6 flex justify-center gap-2">
-          {[0, 1, 2].map((dot) => (
-            <motion.span
-              key={dot}
-              animate={{
-                y: [0, -7, 0],
-                opacity: [0.35, 1, 0.35],
-              }}
-              transition={{
-                duration: 0.9,
-                delay: dot * 0.14,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="
-                h-2
-                w-2
-                rounded-full
-                bg-blue-400
-              "
-            />
-          ))}
-        </div>
-      </div>
-    </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 

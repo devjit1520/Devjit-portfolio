@@ -1,119 +1,287 @@
-<h1 align="center">Hey <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Waving%20Hand.png" height="30px" width="30px"> I'm Devjit Mondal</h1>
-<h3 align="center">Front-end web developer</h3>
+Devjit Mondal — Frontend Developer Portfolio
 
-<p align="center">
-  <a href="https://komarev.com/ghpvc/?username=devjit1520">
-    <img src="https://komarev.com/ghpvc/?username=devjit1520&label=Profile%20views&color=00FFFF&style=flat-square" alt="devjit1520's profile views" />
-  </a>
-</p>
+A modern, responsive, and animated developer portfolio built to showcase my frontend skills, featured projects, experience, and contact information.
 
-<img src="https://user-images.githubusercontent.com/74038190/221352989-518609ab-b4d1-459e-929f-a08cd2bd9b3c.gif" alt="Banner" width="100%" />
+The portfolio uses a premium dark interface with blue, cyan, and violet accents, neumorphism-inspired cards, smooth motion effects, responsive layouts, and an EmailJS-powered contact form.
 
-## 📌 About Me
-- I'm a passionate Frontend Developer who loves building modern, responsive, and user-friendly web applications. I enjoy turning ideas into interactive digital experiences using clean code and creative design.
-- 💻 Tech Stack:
-- HTML5, CSS3, JavaScript (ES6+)
-- React.js, Vite
-- Tailwind CSS, Bootstrap
-- Git & GitHub
-- Responsive Web Design
-- 🚀 I enjoy working on:
-- Modern portfolio websites
-- Interactive web applications
-- Responsive UI/UX design
-- React-based projects
-- Open-source learning and collaboration
-- 🌱 Currently improving my skills in advanced React concepts, state management, performance optimization, and full-stack web development.
-- My goal is to create impactful digital products while continuously learning new technologies and best practices in web development.
-- Feel free to explore my repositories and connect with me. I'm always excited to learn, collaborate, and build amazing things on the web! ✨
+Also, Get Help with ChatGPT
 
+Live Demo
 
-## 🧠 My Focus Areas
-- ## 🎯 Focus Areas
-* React.js & Modern JavaScript (ES6+)
-* Responsive Web Design
-* UI/UX Development
-* Component-Based Architecture
-* Performance Optimization
-* Git & GitHub Workflow
-* Frontend Best Practices
+Portfolio: https://portfolio-devjit.vercel.app/
 
+Preview
 
-## 📊 GitHub Stats & Trophies
-<p align="center">
-  <a href="https://github.com/devjit1520">
-    <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=devjit1520&cache_seconds=7200&layout=compact&theme=dracula&border_radius=10" alt="devjit1520's GitHub Stats" />
-  </a>
-  <img src="https://streak-stats.demolab.com/?user=devjit1520&theme=dracula&hide_border=true&cache_seconds=86400" alt="devjit1520's GitHub Streak" width="49%" />
-</p>
-<p align="center">
-  <img src="https://trophy.ryglcloud.net/?username=devjit1520&theme=dracula&no-frame=true&no-bg=true&margin-w=4&cache_seconds=86400" alt="Devjit Mondal's GitHub Trophies" />
-</p>
-<p align="center">
-  <img height="280em" src="https://github-readme-activity-graph.vercel.app/graph?username=devjit1520&theme=dracula&radius=10" alt="devjit1520's Activity Graph" />
-</p>
+Add your portfolio screenshots inside:
 
+public/screenshots/
+├── portfolio-home.png
+├── portfolio-projects.png
+└── portfolio-contact.png
 
-## 🛠️ Languages & Tools
+Then use them here:
 
-<h3 align="center">Programming Languages</h3>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" />
+![Portfolio Home](public/screenshots/portfolio-home.png)
+![Projects Section](public/screenshots/portfolio-projects.png)
+![Contact Section](public/screenshots/portfolio-contact.png)
 
-</p>
+Features
 
-<h3 align="center">Frontend</h3>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5" width="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="CSS3" width="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="Tailwind CSS" width="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" width="40" />
+Premium responsive portfolio interface
 
-</p>
+Animated HUD loading screen
 
-<h3 align="center">DevOps & Cloud</h3>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" width="40" />
+Fixed responsive navigation bar
 
-</p>
+Modern hero section
 
-<h3 align="center">Tools</h3>
-<p align="center">
-  <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" width="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="VS Code" width="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://www.vectorlogo.zone/logos/vitejsdev/vitejsdev-icon.svg" alt="Vite" width="40" />
+Premium About section
 
-</p>
+Skills showcase with technology categories
 
-<p align="center">
-  <a href="https://github.com/devjit1520">
-    <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=devjit1520&langs_count=8&layout=compact&theme=dracula&border_radius=10" alt="Top Languages" />
-  </a>
-</p>
+Featured project Bento layout
 
-## 🔗 Connect with Me
-<p align="center">
-  <a href="https://www.linkedin.com/in/devjit-mondal-b68947233/">
-    <img src="https://raw.githubusercontent.com/gauravghongde/social-icons/master/SVG/Color/LinkedIN.svg" alt="LinkedIn" width="40" />
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://wa.me/918515016686">
-    <img src="https://raw.githubusercontent.com/gauravghongde/social-icons/master/SVG/Color/WhatsApp.svg" alt="WhatsApp" width="40" />
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="mailto:devjit1682002@mail..com">
-    <img src="https://raw.githubusercontent.com/gauravghongde/social-icons/master/SVG/Color/Gmail.svg" alt="Gmail" width="40" />
-  </a>
-</p>
+Experience section
 
-## 💬 Quote
-> > ✨ *"Building beautiful interfaces, one component at a time."*
+EmailJS-powered contact form
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg">
-  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/abozanona/abozanona/output/pacman-contribution-graph.svg">
-</picture>
+Contact form validation
 
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" alt="Bottom Line" width="100%" />
-</div>
+Loading, success, and error states
+
+Spam honeypot protection
+
+Downloadable resume
+
+Social profile links
+
+Smooth section navigation
+
+Mobile, tablet, laptop, and desktop support
+
+Framer Motion animations
+
+Vercel deployment support
+
+Sections
+
+Home
+
+About
+
+Skills
+
+Projects
+
+Experience
+
+Contact
+
+Footer
+
+Featured Projects
+
+FinTrack Pro
+
+A personal finance management application for tracking income, expenses, budgets, savings goals, and financial analytics.
+
+Technologies: React, JavaScript, Tailwind CSS, Framer Motion, Recharts, React Router, Local Storage
+
+Modern Todo Application
+
+A responsive task management application with priorities, categories, due dates, filtering, drag-and-drop sorting, and local storage persistence.
+
+Technologies: HTML5, CSS3, JavaScript, SortableJS, Local Storage, Vite
+
+Quiz Application
+
+An interactive quiz application with timed questions, score tracking, instant results, responsive layouts, and animated feedback.
+
+Technologies: React, JavaScript, Tailwind CSS, Vite, Framer Motion
+
+Tech Stack
+
+Frontend
+
+React
+
+JavaScript
+
+Vite
+
+Tailwind CSS
+
+Framer Motion
+
+React Icons
+
+Contact Form
+
+EmailJS Browser SDK
+
+Client-side validation
+
+Environment variables
+
+Honeypot spam protection
+
+Deployment
+
+GitHub
+
+Vercel
+
+Project Structure
+
+my-portfolio/
+├── public/
+│   ├── projects/
+│   │   ├── fintrack-pro.png
+│   │   ├── todo-app.png
+│   │   └── quiz-app.png
+│   ├── screenshots/
+│   ├── Devjit_Mondal.pdf
+│   └── favicon.svg
+│
+├── src/
+│   ├── assets/
+│   │   └── devjit.png
+│   │
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── BackToTop.jsx
+│   │   │   ├── LoadingScreen.jsx
+│   │   │   ├── ScrollProgress.jsx
+│   │   │   ├── SectionReveal.jsx
+│   │   │   └── SkipToContent.jsx
+│   │   │
+│   │   ├── layout/
+│   │   │   └── Navbar.jsx
+│   │   │
+│   │   └── sections/
+│   │       ├── Hero.jsx
+│   │       ├── About.jsx
+│   │       ├── Skills.jsx
+│   │       ├── Projects.jsx
+│   │       ├── Experience.jsx
+│   │       └── Contact.jsx
+│   │
+│   ├── services/
+│   │   └── emailService.js
+│   │
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+│
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+├── vite.config.js
+└── README.md
+
+Getting Started
+
+1. Clone the repository
+
+git clone https://github.com/devjit1520/Devjit-portfolio.git
+cd Devjit-portfolio
+
+2. Install dependencies
+
+npm install
+
+3. Create the environment file
+
+Create a .env file in the project root:
+
+VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+
+Do not commit the real .env file.
+
+4. Start the development server
+
+npm run dev
+
+5. Create a production build
+
+npm run build
+
+6. Preview the production build
+
+npm run preview
+
+EmailJS Template Variables
+
+The EmailJS template should use these exact variables:
+
+{{from_name}}
+{{from_email}}
+{{subject}}
+{{message}}
+{{reply_to}}
+{{submitted_at}}
+
+Recommended template settings:
+
+Subject: New Portfolio Message: {{subject}}
+From Name: Devjit Portfolio
+Reply To: {{reply_to}}
+
+Environment Variables on Vercel
+
+Add the following variables in:
+
+Vercel Dashboard
+→ Project
+→ Settings
+→ Environment Variables
+
+Required variables:
+
+VITE_EMAILJS_SERVICE_ID
+VITE_EMAILJS_TEMPLATE_ID
+VITE_EMAILJS_PUBLIC_KEY
+
+After adding or changing them, redeploy the project.
+
+Deployment
+
+This project is configured for deployment on Vercel.
+
+Push the project to GitHub.
+
+Import the repository into Vercel.
+
+Add the EmailJS environment variables.
+
+Click Deploy.
+
+Redeploy whenever environment variables change.
+
+Scripts
+
+npm run dev
+npm run build
+npm run preview
+npm run lint
+
+Contact
+
+Devjit MondalFrontend DeveloperWest Bengal, India
+
+Email: devjit1682002@gmail.com
+
+GitHub: github.com/devjit1520
+
+LinkedIn: https://www.linkedin.com/in/devjit-mondal-b68947233/
+
+Instagram: @iamdevjit_15
+
+License
+
+This project is available for portfolio and educational reference. Please do not copy the complete design, content, or personal branding and present it as your own work.
+
+Built with React, Tailwind CSS, Framer Motion, and EmailJS.
