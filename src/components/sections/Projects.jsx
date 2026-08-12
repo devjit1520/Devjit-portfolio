@@ -45,7 +45,7 @@ const projects = [
       "Tailwind CSS",
       "Framer Motion",
       "Recharts",
-      "Local Storage",
+      "Supabase",
     ],
     github: "https://github.com/devjit1520/fintrack",
     demo: "https://fintrack-devjit.vercel.app/",
@@ -81,7 +81,7 @@ const projects = [
       "Tailwind CSS",
       "Local Storage",
     ],
-    github: "https://github.com/devjit1520",
+    github: "https://github.com/devjit1520/Todo_Manager",
     demo: "https://taskbloom-todo-app.vercel.app/",
   },
   {
@@ -106,7 +106,6 @@ const projects = [
       "Question & Option Shuffle",
       "XP Progression System",
       "Modern Terminal Noir Design",
-      
     ],
     technologies: [
       "React",
@@ -114,10 +113,9 @@ const projects = [
       "Tailwind CSS",
       "Vite",
       "Framer Motion",
-      
     ],
-    github: "https://github.com/devjit1520",
-    demo: "https://quizmaster-application.vercel.app/",
+    github: "https://github.com/devjit1520/quiz_application",
+    demo: "https://quiz-application-lyart-two.vercel.app/",
   },
 ];
 
