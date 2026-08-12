@@ -1,287 +1,355 @@
-Devjit Mondal — Frontend Developer Portfolio
+<div align="center">
 
-A modern, responsive, and animated developer portfolio built to showcase my frontend skills, featured projects, experience, and contact information.
+<img src="./docs/portfolio-cover.svg" width="100%" alt="Devjit Mondal — Frontend Developer Portfolio" />
 
-The portfolio uses a premium dark interface with blue, cyan, and violet accents, neumorphism-inspired cards, smooth motion effects, responsive layouts, and an EmailJS-powered contact form.
+<br/>
 
-Also, Get Help with ChatGPT
+# Devjit Mondal — Developer Portfolio
 
-Live Demo
+### Frontend Developer Portfolio built with React
 
-Portfolio: https://portfolio-devjit.vercel.app/
+A modern, responsive and animated portfolio showcasing frontend projects, technical skills, experience and contact information through a polished single-page interface.
 
-Preview
+[![Live Demo](https://img.shields.io/badge/Live_Demo-View_Portfolio-111111?style=for-the-badge&logo=vercel&logoColor=ffffff)](https://portfolio-devjit.vercel.app/)
+[![React](https://img.shields.io/badge/React-19-111111?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-111111?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4)](https://tailwindcss.com/)
+[![EmailJS](https://img.shields.io/badge/EmailJS-Contact_Form-111111?style=for-the-badge&logo=gmail&logoColor=EA4335)](https://www.emailjs.com/)
 
-Add your portfolio screenshots inside:
+</div>
 
-public/screenshots/
-├── portfolio-home.png
-├── portfolio-projects.png
-└── portfolio-contact.png
+---
 
-Then use them here:
+## Overview
 
-![Portfolio Home](public/screenshots/portfolio-home.png)
-![Projects Section](public/screenshots/portfolio-projects.png)
-![Contact Section](public/screenshots/portfolio-contact.png)
+This portfolio is the central showcase for my work as a **Frontend Developer**.
 
-Features
+It is designed as more than a static profile page: the application combines responsive layouts, reusable React components, animated interactions, project filtering, a professional contact workflow and a consistent visual system to present my frontend skills and real-world projects clearly.
 
-Premium responsive portfolio interface
+The site is built as a client-side React application and deployed on Vercel.
 
-Animated HUD loading screen
+---
 
-Fixed responsive navigation bar
+## Live Portfolio
 
-Modern hero section
+**Production:** https://portfolio-devjit.vercel.app/
 
-Premium About section
+---
 
-Skills showcase with technology categories
+## Portfolio Highlights
 
-Featured project Bento layout
+- Premium responsive single-page interface
+- Animated loading experience
+- Fixed responsive navigation
+- Scroll progress indicator
+- Back-to-top interaction
+- Hero section with strong developer branding
+- About and skills presentation
+- Filterable project showcase
+- Experience section
+- EmailJS-powered contact form
+- Client-side form validation
+- Honeypot spam protection
+- Loading, success and error states for form submission
+- Social and professional contact links
+- Resume access
+- Responsive support across mobile, tablet and desktop
+- Motion-driven interactions with Framer Motion
+- Vercel deployment
 
-Experience section
+---
 
-EmailJS-powered contact form
+## Main Sections
 
-Contact form validation
+### Hero
 
-Loading, success, and error states
+Introduces my role, frontend focus and primary calls to action through a visually prominent landing section.
 
-Spam honeypot protection
+### About
 
-Downloadable resume
+Presents my background, development focus and approach to building modern web interfaces.
 
-Social profile links
+### Skills
 
-Smooth section navigation
+Organizes frontend technologies and development tools into an easy-to-scan skills experience.
 
-Mobile, tablet, laptop, and desktop support
+### Projects
 
-Framer Motion animations
+Showcases selected work with project previews, technology tags, feature lists, source-code links and live demos.
 
-Vercel deployment support
+The project section also supports filtering by technology category.
 
-Sections
+### Experience
 
-Home
+Presents my development journey and relevant experience in a structured timeline-style section.
 
-About
+### Contact
 
-Skills
+Provides a complete recruiter/client contact flow with validation, loading states and EmailJS submission.
 
-Projects
+---
 
-Experience
+## Featured Projects
 
-Contact
+### FinTrack Pro
 
-Footer
+Personal finance application for managing transactions, budgets, goals and financial analytics.
 
-Featured Projects
+**Stack:** React, JavaScript, Tailwind CSS, Framer Motion, Recharts
 
-FinTrack Pro
+- Repository: https://github.com/devjit1520/fintrack
+- Live: https://fintrack-devjit.vercel.app/
 
-A personal finance management application for tracking income, expenses, budgets, savings goals, and financial analytics.
+### TaskBloom
 
-Technologies: React, JavaScript, Tailwind CSS, Framer Motion, Recharts, React Router, Local Storage
+Responsive task-management application with CRUD operations, priorities, deadlines, filtering, drag-and-drop sorting and LocalStorage persistence.
 
-Modern Todo Application
+**Stack:** HTML, CSS, JavaScript, Tailwind CSS, SortableJS, LocalStorage
 
-A responsive task management application with priorities, categories, due dates, filtering, drag-and-drop sorting, and local storage persistence.
+- Repository: https://github.com/devjit1520/Todo_Manager
 
-Technologies: HTML5, CSS3, JavaScript, SortableJS, Local Storage, Vite
+### QuizMaster
 
-Quiz Application
+Gamified frontend quiz platform with configurable quizzes, XP progression, achievements, daily challenges, analytics and persistent progress.
 
-An interactive quiz application with timed questions, score tracking, instant results, responsive layouts, and animated feedback.
+**Stack:** React, JavaScript, Tailwind CSS, Framer Motion, LocalStorage
 
-Technologies: React, JavaScript, Tailwind CSS, Vite, Framer Motion
+- Repository: https://github.com/devjit1520/quiz_application
+- Live: https://quiz-application-lyart-two.vercel.app/
 
-Tech Stack
+---
 
-Frontend
+## Contact Form Architecture
 
-React
+The contact form uses **EmailJS** so visitors can send messages directly from the portfolio without a custom backend server.
 
-JavaScript
+The contact workflow includes:
 
-Vite
+- Required-field validation
+- Email-format validation
+- Minimum and maximum message-length checks
+- Submission loading state
+- Success feedback
+- Error feedback
+- Honeypot field for basic bot/spam protection
+- Environment-based EmailJS configuration
 
-Tailwind CSS
+The EmailJS integration is isolated inside:
 
-Framer Motion
+```text
+src/services/emailService.js
+```
 
-React Icons
+This keeps external service configuration separate from UI components.
 
-Contact Form
+---
 
-EmailJS Browser SDK
+## Tech Stack
 
-Client-side validation
+| Area | Technology |
+|---|---|
+| UI Library | React 19 |
+| Language | JavaScript ES6+ |
+| Styling | Tailwind CSS 4 |
+| Build Tool | Vite 8 |
+| Animation | Framer Motion |
+| Contact | EmailJS Browser SDK |
+| Icons | React Icons |
+| Deployment | Vercel |
 
-Environment variables
+Additional frontend libraries in the project include React CountUp, React Scroll, React Type Animation and tsParticles.
 
-Honeypot spam protection
+---
 
-Deployment
+## Application Architecture
 
-GitHub
+The portfolio is organized by responsibility rather than placing all UI logic inside a single component.
 
-Vercel
+```text
+App
+│
+├── Common UI
+│   ├── Loading Screen
+│   ├── Scroll Progress
+│   └── Back To Top
+│
+├── Layout
+│   └── Navbar
+│
+└── Sections
+    ├── Hero
+    ├── About
+    ├── Skills
+    ├── Projects
+    ├── Experience
+    └── Contact
+```
 
-Project Structure
+The root `App.jsx` coordinates the main page structure and loading state, while each major portfolio area remains separated into reusable components.
 
-my-portfolio/
+---
+
+## Project Structure
+
+```text
+Devjit-portfolio/
+│
 ├── public/
 │   ├── projects/
-│   │   ├── fintrack-pro.png
-│   │   ├── todo-app.png
-│   │   └── quiz-app.png
-│   ├── screenshots/
 │   ├── Devjit_Mondal.pdf
 │   └── favicon.svg
 │
+├── docs/
+│   └── portfolio-cover.svg
+│
 ├── src/
 │   ├── assets/
-│   │   └── devjit.png
-│   │
 │   ├── components/
 │   │   ├── common/
-│   │   │   ├── BackToTop.jsx
-│   │   │   ├── LoadingScreen.jsx
-│   │   │   ├── ScrollProgress.jsx
-│   │   │   ├── SectionReveal.jsx
-│   │   │   └── SkipToContent.jsx
-│   │   │
 │   │   ├── layout/
-│   │   │   └── Navbar.jsx
-│   │   │
 │   │   └── sections/
-│   │       ├── Hero.jsx
-│   │       ├── About.jsx
-│   │       ├── Skills.jsx
-│   │       ├── Projects.jsx
-│   │       ├── Experience.jsx
-│   │       └── Contact.jsx
-│   │
+│   ├── data/
+│   ├── hooks/
 │   ├── services/
 │   │   └── emailService.js
-│   │
+│   ├── utils/
 │   ├── App.jsx
 │   ├── index.css
 │   └── main.jsx
 │
-├── .env
 ├── .env.example
 ├── .gitignore
+├── index.html
 ├── package.json
 ├── vite.config.js
 └── README.md
+```
 
-Getting Started
+---
 
-1. Clone the repository
+## Getting Started
 
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/devjit1520/Devjit-portfolio.git
 cd Devjit-portfolio
+```
 
-2. Install dependencies
+### 2. Install dependencies
 
+```bash
 npm install
+```
 
-3. Create the environment file
+### 3. Configure EmailJS
 
-Create a .env file in the project root:
+Create a local `.env` file in the project root:
 
+```env
 VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
 VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
 VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+```
 
-Do not commit the real .env file.
+Do not commit your real `.env` file.
 
-4. Start the development server
+### 4. Start development
 
+```bash
 npm run dev
+```
 
-5. Create a production build
+### 5. Create a production build
 
+```bash
 npm run build
+```
 
-6. Preview the production build
+### 6. Preview the production build
 
+```bash
 npm run preview
+```
 
-EmailJS Template Variables
+---
 
-The EmailJS template should use these exact variables:
+## Available Scripts
 
-{{from_name}}
-{{from_email}}
-{{subject}}
-{{message}}
-{{reply_to}}
-{{submitted_at}}
-
-Recommended template settings:
-
-Subject: New Portfolio Message: {{subject}}
-From Name: Devjit Portfolio
-Reply To: {{reply_to}}
-
-Environment Variables on Vercel
-
-Add the following variables in:
-
-Vercel Dashboard
-→ Project
-→ Settings
-→ Environment Variables
-
-Required variables:
-
-VITE_EMAILJS_SERVICE_ID
-VITE_EMAILJS_TEMPLATE_ID
-VITE_EMAILJS_PUBLIC_KEY
-
-After adding or changing them, redeploy the project.
-
-Deployment
-
-This project is configured for deployment on Vercel.
-
-Push the project to GitHub.
-
-Import the repository into Vercel.
-
-Add the EmailJS environment variables.
-
-Click Deploy.
-
-Redeploy whenever environment variables change.
-
-Scripts
-
+```bash
 npm run dev
 npm run build
-npm run preview
 npm run lint
+npm run preview
+```
 
-Contact
+---
 
-Devjit MondalFrontend DeveloperWest Bengal, India
+## Engineering Highlights
 
-Email: devjit1682002@gmail.com
+### Component Separation
 
-GitHub: github.com/devjit1520
+Major portfolio sections are split into dedicated React components, helping keep the application easier to maintain and extend.
 
-LinkedIn: https://www.linkedin.com/in/devjit-mondal-b68947233/
+### Service Layer
 
-Instagram: @iamdevjit_15
+EmailJS logic is isolated from the Contact UI in a dedicated service module rather than being embedded directly inside the section component.
 
-License
+### Form Reliability
 
-This project is available for portfolio and educational reference. Please do not copy the complete design, content, or personal branding and present it as your own work.
+The contact form validates input before submission and exposes user-friendly loading, success and error states.
 
-Built with React, Tailwind CSS, Framer Motion, and EmailJS.
+### Responsive UI
+
+The layout is designed to remain usable across phone, tablet and desktop viewport sizes.
+
+### Motion & Interaction
+
+Framer Motion is used to add transitions and viewport-triggered interactions without turning the portfolio into an animation-heavy demo.
+
+---
+
+## What I Practiced
+
+Building this portfolio helped strengthen my understanding of:
+
+- React component architecture
+- Responsive UI development
+- Tailwind CSS design systems
+- Animation with Framer Motion
+- Form state and validation
+- Third-party service integration
+- Environment-variable configuration
+- Project presentation for recruiters and clients
+- Frontend deployment with Vercel
+
+---
+
+## Future Improvements
+
+- Add richer SEO metadata and social preview metadata
+- Add more production projects as they are completed
+- Improve automated accessibility testing
+- Add project case-study pages
+- Add automated UI tests
+- Continue improving performance and Core Web Vitals
+
+---
+
+## Author
+
+**Devjit Mondal**  
+Frontend Developer
+
+- Portfolio: https://portfolio-devjit.vercel.app/
+- GitHub: https://github.com/devjit1520
+- LinkedIn: https://www.linkedin.com/in/devjit-mondal-b68947233/
+
+---
+
+<div align="center">
+
+### `design → build → refine → ship`
+
+Built with React, JavaScript, Tailwind CSS, Framer Motion and EmailJS.
+
+</div>
