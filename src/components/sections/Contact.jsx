@@ -23,6 +23,8 @@ import {
 
 import { sendContactEmail } from "../../services/emailService";
 
+import BrandBanner from "./BrandBanner";
+
 const footerLinks = [
   { name: "Home", id: "home" },
   { name: "About", id: "about" },
@@ -61,16 +63,25 @@ const socialLinks = [
     name: "GitHub",
     href: "https://github.com/devjit1520",
     icon: FaGithub,
+    iconColor: "text-slate-300",
+    hover:
+      "hover:border-white/30 hover:bg-white/10 hover:text-white hover:shadow-[0_0_25px_rgba(255,255,255,0.12)]",
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/devjit-mondal-b68947233/",
     icon: FaLinkedin,
+    iconColor: "text-blue-400",
+    hover:
+      "hover:border-blue-400/40 hover:bg-blue-500/10 hover:text-blue-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.18)]",
   },
   {
     name: "Instagram",
     href: "https://www.instagram.com/iamdevjit_15",
     icon: FaInstagram,
+    iconColor: "text-pink-400",
+    hover:
+      "hover:border-pink-400/40 hover:bg-pink-500/10 hover:text-pink-300 hover:shadow-[0_0_25px_rgba(236,72,153,0.18)]",
   },
 ];
 
@@ -187,7 +198,7 @@ function Contact() {
         <div className="absolute inset-0 opacity-[0.025] [background-image:linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)] [background-size:48px_48px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -481,11 +492,15 @@ function Contact() {
         </div>
       </div>
 
+      {/* Brand banner */}
+
+<BrandBanner />
+
 <footer
         className="
           relative
           z-10
-          mt-20
+         
           border-t
           border-white/10
           bg-slate-950/40
@@ -667,6 +682,9 @@ function Contact() {
               </div>
             </div>
           </div>
+
+
+          
 
           {/* Bottom footer */}
 

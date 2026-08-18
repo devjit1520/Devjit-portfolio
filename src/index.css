@@ -50,3 +50,33 @@ transparent 1px
 );
 
 background-size:50px 50px; */
+
+
+
+/* =========================================================
+   BRAND BANNER
+========================================================= */
+
+.brand-banner-grid {
+  background-image:
+    linear-gradient(
+      rgba(59, 130, 246, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(59, 130, 246, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size: 56px 56px;
+}
+
+/* =========================================================
+   BRAND TEXT SELECTION
+========================================================= */
+
+.brand-banner ::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: white;
+}

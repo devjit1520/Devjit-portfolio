@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
 import {
   FaArrowRight,
   FaCheckCircle,
@@ -289,52 +290,586 @@ function SmallCard({ project, index }) {
 function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const filteredProjects = useMemo(
-    () =>
-      activeFilter === "All"
-        ? projects
-        : projects.filter((project) => project.category === activeFilter),
-    [activeFilter]
-  );
+  const filters = ["All", "React", "JavaScript"];
 
-  const featured =
-    filteredProjects.find((project) => project.featured) ||
-    filteredProjects[0];
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "All") {
+      return projects;
+    }
 
-  const others = filteredProjects.filter(
-    (project) => project.id !== featured?.id
-  );
+    return projects.filter(
+      (project) => project.category === activeFilter
+    );
+  }, [activeFilter]);
 
   return (
     <section
       id="projects"
-      className="relative overflow-hidden bg-[#010817] py-10 sm:py-10"
+      className="
+        relative
+        overflow-hidden
+        bg-[#020817]
+        px-4
+        py-8
+        text-white
+        sm:px-6
+        lg:px-8
+      "
     >
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
+
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-52 top-24 h-[480px] w-[480px] rounded-full bg-blue-600/10 blur-[160px]" />
-        <div className="absolute -right-48 bottom-16 h-[480px] w-[480px] rounded-full bg-cyan-500/10 blur-[160px]" />
-        <div className="absolute inset-0 opacity-[0.025] [background-image:linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)] [background-size:48px_48px]" />
+        {/* Grid */}
+        <div
+          className="
+            absolute
+            inset-0
+            opacity-[0.055]
+            [background-image:linear-gradient(rgba(96,165,250,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(96,165,250,.8)_1px,transparent_1px)]
+            [background-size:72px_72px]
+          "
+        />
+
+        {/* Blue glow */}
+        <div
+          className="
+            absolute
+            left-1/2
+            top-20
+            h-[500px]
+            w-[700px]
+            -translate-x-1/2
+            rounded-full
+            bg-blue-600/10
+            blur-[140px]
+          "
+        />
+
+        {/* Cyan glow */}
+        <div
+          className="
+            absolute
+            right-[-150px]
+            top-[650px]
+            h-[350px]
+            w-[350px]
+            rounded-full
+            bg-cyan-500/10
+            blur-[120px]
+          "
+        />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      {/* =====================================================
+          MAIN CONTAINER
+      ===================================================== */}
+
+      <div className="relative z-10 mx-auto max-w-[1380px]">
+
+        {/* ===================================================
+            HEADER
+        =================================================== */}
+
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-3xl text-center"
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <h2
+
+      
+
+          {/* Heading */}
+
+                    <h2
+                      className="
+                        mt-5
+                        text-3xl
+                        font-black
+                        tracking-tight
+                        text-white
+                        sm:text-4xl
+                        lg:text-5xl
+                      "
+                    >
+                     <span
+                      className="
+                        inline-flex
+                        items-center
+                        gap-2
+                        rounded-full
+                        border
+                        border-blue-500/25
+                        bg-blue-500/10
+                        px-4
+                        py-2
+                        text-xl
+                        font-semibold
+                        uppercase
+                        tracking-[0.22em]
+                        text-blue-400
+                        
+                      "
+                    >
+                                  <FiCode />
+
+            FEATURED WORK
+                    </span>
+                    </h2>
+
+
+
+          {/* Description */}
+
+          <p
             className="
+              mx-auto
               mt-5
-              text-3xl
-              font-black
-              tracking-tight
-              text-white
-              sm:text-4xl
-              lg:text-5xl
+              max-w-2xl
+              text-base
+              leading-8
+              text-slate-400
+              sm:text-lg
             "
           >
-           <span
+            A selection of projects demonstrating my frontend development,
+            problem-solving, UI design, API integration, and React skills.
+          </p>
+
+          {/* Accent */}
+
+          <div
+            className="
+              mx-auto
+              mt-8
+              h-1
+              w-24
+              rounded-full
+              bg-gradient-to-r
+              from-blue-500
+              via-cyan-400
+              to-blue-500
+              shadow-[0_0_20px_rgba(59,130,246,.6)]
+            "
+          />
+        </motion.div>
+
+        {/* ===================================================
+            FILTER
+        =================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="
+            mx-auto
+            mb-12
+            flex
+            w-fit
+            items-center
+            gap-1
+            rounded-2xl
+            border
+            border-white/10
+            bg-[#0b1629]/80
+            p-1.5
+            shadow-[0_15px_50px_rgba(0,0,0,.25)]
+            backdrop-blur-xl
+          "
+        >
+          <div className="hidden px-3 text-slate-500 sm:block">
+            <FiFilter />
+          </div>
+
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              type="button"
+              onClick={() => setActiveFilter(filter)}
+              className={`
+                relative
+                rounded-xl
+                px-5
+                py-2.5
+                text-sm
+                font-semibold
+                transition-all
+                duration-300
+                ${
+                  activeFilter === filter
+                    ? "text-white"
+                    : "text-slate-400 hover:text-white"
+                }
+              `}
+            >
+              {activeFilter === filter && (
+                <motion.span
+                  layoutId="activeProjectFilter"
+                  className="
+                    absolute
+                    inset-0
+                    rounded-xl
+                    bg-gradient-to-r
+                    from-blue-600
+                    to-blue-500
+                    shadow-[0_8px_25px_rgba(37,99,235,.35)]
+                  "
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 30,
+                  }}
+                />
+              )}
+
+              <span className="relative z-10">
+                {filter}
+              </span>
+            </button>
+          ))}
+        </motion.div>
+
+        {/* ===================================================
+            PROJECT COUNT
+        =================================================== */}
+
+        <div
+          className="
+            mb-5
+            flex
+            items-center
+            justify-between
+            text-sm
+          "
+        >
+          <span className="text-slate-500">
+            Showing{" "}
+            <span className="font-semibold text-blue-400">
+              {filteredProjects.length}
+            </span>{" "}
+            projects
+          </span>
+
+          <span className="hidden items-center gap-2 text-slate-500 sm:flex">
+            <span
+              className="
+                h-2
+                w-2
+                rounded-full
+                bg-emerald-400
+                shadow-[0_0_12px_rgba(52,211,153,.8)]
+              "
+            />
+
+            Continuously building
+          </span>
+        </div>
+
+        {/* ===================================================
+            BENTO GRID
+        =================================================== */}
+
+        <div
+          className="
+            grid
+            grid-cols-1
+            gap-5
+            md:grid-cols-2
+            lg:grid-cols-4
+            lg:auto-rows-[280px]
+          "
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => {
+              const isFeatured =
+                project.featured && activeFilter === "All";
+
+              return (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                  featured={isFeatured}
+                />
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+/* ===========================================================
+   PROJECT CARD
+=========================================================== */
+
+function ProjectCard({
+  project,
+  index,
+  featured = false,
+}) {
+  return (
+    <motion.article
+      layout
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      exit={{
+        opacity: 0,
+        scale: 0.96,
+      }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.05,
+      }}
+      whileHover={{
+        y: -5,
+      }}
+      className={`
+        group
+        relative
+        overflow-hidden
+        rounded-[28px]
+        border
+        border-white/[0.09]
+        bg-[#091426]/80
+        shadow-[0_20px_70px_rgba(0,0,0,.25)]
+        backdrop-blur-xl
+        transition-all
+        duration-500
+        hover:border-blue-500/40
+        hover:shadow-[0_25px_80px_rgba(37,99,235,.12)]
+        ${
+          featured
+            ? "md:col-span-2 lg:col-span-4 lg:row-span-2"
+            : "md:col-span-1 lg:col-span-2 lg:row-span-2"
+        }
+      `}
+    >
+      {/* =====================================================
+          IMAGE AREA
+      ===================================================== */}
+
+      <div
+        className={`
+          relative
+          overflow-hidden
+          ${
+            featured
+              ? "h-[330px] sm:h-[400px] lg:h-[440px]"
+              : "h-[260px] sm:h-[300px] lg:h-[310px]"
+          }
+        `}
+      >
+        {/* Project image */}
+
+        <img
+          src={project.image}
+          alt={`${project.title} project preview`}
+          className="
+            absolute
+            inset-0
+            h-full
+            w-full
+            object-cover
+            object-top
+            opacity-90
+            transition-all
+            duration-700
+            group-hover:scale-[1.04]
+            group-hover:opacity-100
+          "
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
+        />
+
+        {/* Dark gradient */}
+
+        <div
+          className="
+            absolute
+            inset-0
+            bg-gradient-to-b
+            from-[#020817]/20
+            via-[#020817]/20
+            to-[#091426]
+          "
+        />
+
+        {/* Grid overlay */}
+
+        <div
+          className="
+            absolute
+            inset-0
+            opacity-30
+            [background-image:linear-gradient(rgba(96,165,250,.35)_1px,transparent_1px),linear-gradient(90deg,rgba(96,165,250,.35)_1px,transparent_1px)]
+            [background-size:42px_42px]
+          "
+        />
+
+        {/* Featured badge */}
+
+        {project.featured && (
+          <div
+            className="
+              absolute
+              left-6
+              top-6
+              z-20
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              border
+              border-amber-400/30
+              bg-[#091426]/80
+              px-4
+              py-2
+              text-xs
+              font-bold
+              text-amber-400
+              shadow-[0_0_25px_rgba(251,191,36,.08)]
+              backdrop-blur-xl
+            "
+          >
+            <span
+              className="
+                h-2
+                w-2
+                rounded-full
+                bg-amber-400
+                shadow-[0_0_10px_rgba(251,191,36,.8)]
+              "
+            />
+
+            Featured Project
+          </div>
+        )}
+
+        {/* Number */}
+
+        <span
+          className="
+            absolute
+            right-6
+            top-4
+            z-10
+            select-none
+            text-6xl
+            font-black
+            tracking-tight
+            text-white/[0.06]
+            transition-colors
+            duration-500
+            group-hover:text-blue-400/[0.10]
+          "
+        >
+          {String(project.id).padStart(2, "0")}
+        </span>
+
+        {/* Live badge */}
+
+        <div
+          className="
+            absolute
+            bottom-6
+            right-6
+            z-20
+            flex
+            items-center
+            gap-2
+            rounded-full
+            border
+            border-emerald-400/20
+            bg-[#071526]/80
+            px-4
+            py-2
+            text-xs
+            font-semibold
+            text-emerald-400
+            backdrop-blur-xl
+          "
+        >
+          <span
+            className="
+              h-2
+              w-2
+              rounded-full
+              bg-emerald-400
+              shadow-[0_0_12px_rgba(52,211,153,.9)]
+            "
+          />
+
+          Live
+        </div>
+
+        {/* Preview button */}
+
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noreferrer"
+          className="
+            absolute
+            left-1/2
+            top-1/2
+            z-30
+            flex
+            h-16
+            w-16
+            -translate-x-1/2
+            -translate-y-1/2
+            scale-90
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/20
+            bg-white/10
+            text-white
+            opacity-0
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            group-hover:scale-100
+            group-hover:opacity-100
+            hover:bg-blue-500
+            hover:border-blue-400
+          "
+          aria-label={`Open ${project.title}`}
+        >
+          <FiArrowUpRight className="text-2xl" />
+        </a>
+      </div>
+
+      {/* =====================================================
+          CONTENT
+      ===================================================== */}
+
+      <div
+        className="
+          relative
+          p-6
+          sm:p-7
+        "
+      >
+        {/* Category + GitHub */}
+
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <div
             className="
               inline-flex
               items-center
@@ -342,120 +877,266 @@ function Projects() {
               rounded-full
               border
               border-blue-500/25
-              bg-blue-500/10
-              px-4
-              py-2
-              text-xl
+              bg-blue-500/[0.08]
+              px-3
+              py-1.5
+              text-xs
               font-semibold
-              uppercase
-              tracking-[0.22em]
               text-blue-400
-              
             "
           >
-            
+            <FiCode />
 
-            <FaLaptopCode />
-            Featured Work
-          </span>
-          </h2>
-
-          
-
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
-            Responsive applications that demonstrate my frontend development,
-            problem-solving, UI design, and React skills.
-          </p>
-                    <motion.div
-            initial={{
-              width: 0,
-            }}
-            whileInView={{
-              width: 110,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.25,
-              duration: 0.6,
-            }}
-            className="
-              mx-auto
-              mt-7
-              h-1
-              rounded-full
-              bg-blue-500
-              shadow-[0_0_20px_rgba(59,130,246,0.65)]
-            "
-          />
-        </motion.div>
-
-        <div className="mx-auto mt-10 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-2xl border border-white/[0.08] bg-[#101b2e]/90 p-2 backdrop-blur-xl">
-          <span className="hidden h-10 w-10 items-center justify-center text-slate-500 sm:flex">
-            <FiFilter />
-          </span>
-
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              type="button"
-              onClick={() => setActiveFilter(filter)}
-              className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition ${
-                activeFilter === filter
-                  ? "bg-blue-600 text-white shadow-[0_8px_25px_rgba(37,99,235,.3)]"
-                  : "text-slate-400 hover:bg-white/5 hover:text-white"
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
-
-        <motion.div layout className="mt-12 grid gap-6">
-          <AnimatePresence mode="popLayout">
-            {featured && (
-              <FeaturedCard key={`featured-${featured.id}`} project={featured} />
-            )}
-
-            {others.length > 0 && (
-              <motion.div layout className="grid gap-6 lg:grid-cols-2">
-                {others.map((project, index) => (
-                  <SmallCard
-                    key={project.id}
-                    project={project}
-                    index={index}
-                  />
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-
-        <div className="mt-10 flex flex-col items-center justify-between gap-5 rounded-[28px] border border-white/[0.08] bg-[#101b2e]/92 px-6 py-6 sm:flex-row sm:px-8">
-          <div>
-            <h3 className="text-xl font-black text-white">
-              More projects are coming
-            </h3>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
-              I continuously build new applications to improve my development
-              skills and solve real-world problems.
-            </p>
+            {project.category}
           </div>
 
           <a
-            href="https://github.com/devjit1520"
+            href={project.github}
             target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex shrink-0 items-center gap-3 rounded-xl border border-blue-500/25 bg-[#0d1829] px-5 py-3 text-sm font-semibold text-white transition hover:border-blue-400/35 hover:text-blue-300"
+            rel="noreferrer"
+            aria-label={`GitHub repository for ${project.title}`}
+            className="
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-xl
+              border
+              border-white/10
+              bg-white/[0.03]
+              text-slate-400
+              transition-all
+              duration-300
+              hover:border-blue-500/40
+              hover:bg-blue-500/10
+              hover:text-blue-400
+            "
           >
-            <FaGithub />
-            View GitHub Profile
-            <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+            <FiGithub className="text-lg" />
+          </a>
+        </div>
+
+        {/* Title */}
+
+        <div className="flex items-start justify-between gap-4">
+          <h3
+            className="
+              text-2xl
+              font-bold
+              tracking-tight
+              text-white
+              transition-colors
+              duration-300
+              group-hover:text-blue-400
+              sm:text-3xl
+            "
+          >
+            {project.title}
+          </h3>
+
+          <FiArrowUpRight
+            className="
+              mt-1
+              shrink-0
+              text-2xl
+              text-slate-600
+              transition-all
+              duration-300
+              group-hover:-translate-y-1
+              group-hover:translate-x-1
+              group-hover:text-blue-400
+            "
+          />
+        </div>
+
+        {/* Description */}
+
+        <p
+          className="
+            mt-4
+            max-w-3xl
+            text-sm
+            leading-7
+            text-slate-400
+            sm:text-base
+          "
+        >
+          {project.description}
+        </p>
+
+        {/* Highlights */}
+
+        {project.highlights?.length > 0 && (
+          <div
+            className="
+              mt-5
+              grid
+              grid-cols-1
+              gap-2
+              sm:grid-cols-2
+            "
+          >
+            {project.highlights
+              .slice(0, featured ? 4 : 3)
+              .map((highlight) => (
+                <div
+                  key={highlight}
+                  className="
+                    flex
+                    items-center
+                    gap-2
+                    text-xs
+                    font-medium
+                    text-slate-300
+                    sm:text-sm
+                  "
+                >
+                  <FiCheckCircle className="shrink-0 text-blue-400" />
+
+                  {highlight}
+                </div>
+              ))}
+          </div>
+        )}
+
+        {/* Tech */}
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.tech.map((technology) => (
+            <span
+              key={technology}
+              className="
+                rounded-lg
+                border
+                border-white/10
+                bg-white/[0.03]
+                px-3
+                py-1.5
+                text-xs
+                font-medium
+                text-slate-400
+                transition-colors
+                duration-300
+                group-hover:border-blue-500/20
+                group-hover:text-slate-300
+              "
+            >
+              {technology}
+            </span>
+          ))}
+        </div>
+
+        {/* Buttons */}
+
+        <div
+          className="
+            mt-7
+            flex
+            flex-wrap
+            gap-3
+          "
+        >
+          {project.live && project.live !== "#" && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="
+                inline-flex
+                items-center
+                gap-2
+                rounded-xl
+                bg-gradient-to-r
+                from-blue-600
+                to-cyan-500
+                px-5
+                py-2.5
+                text-sm
+                font-semibold
+                text-white
+                shadow-[0_10px_30px_rgba(37,99,235,.2)]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:shadow-[0_15px_40px_rgba(37,99,235,.35)]
+              "
+            >
+              Live Demo
+
+              <FiExternalLink />
+            </a>
+          )}
+
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noreferrer"
+            className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-xl
+              border
+              border-white/10
+              bg-white/[0.03]
+              px-5
+              py-2.5
+              text-sm
+              font-semibold
+              text-slate-300
+              transition-all
+              duration-300
+              hover:border-blue-500/30
+              hover:bg-blue-500/10
+              hover:text-white
+            "
+          >
+            <FiGithub />
+
+            GitHub
           </a>
         </div>
       </div>
-    </section>
+
+      {/* =====================================================
+          CARD GLOW
+      ===================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          rounded-[28px]
+          opacity-0
+          ring-1
+          ring-blue-400/30
+          transition-opacity
+          duration-500
+          group-hover:opacity-100
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-20
+          left-1/2
+          h-40
+          w-2/3
+          -translate-x-1/2
+          rounded-full
+          bg-blue-500/10
+          opacity-0
+          blur-[70px]
+          transition-opacity
+          duration-500
+          group-hover:opacity-100
+        "
+      />
+    </motion.article>
   );
 }
 
