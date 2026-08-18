@@ -5,10 +5,17 @@ import {
   FaArrowRight,
   FaCheckCircle,
   FaExternalLinkAlt,
-  FaGithub,
-  FaLaptopCode,
 } from "react-icons/fa";
-import { FiFilter } from "react-icons/fi";
+
+import {
+  FiArrowUpRight,
+  FiCheckCircle,
+  FiCode,
+  FiExternalLink,
+  FiFilter,
+  FiGithub,
+} from "react-icons/fi";
+
 import { LuListTodo } from "react-icons/lu";
 import { MdQuiz } from "react-icons/md";
 import { IoIosWallet } from "react-icons/io";
